@@ -1,0 +1,16 @@
+p{
+    margin: 10px;
+    width: 300px;
+    display: inline;
+}
+
+.preset{
+    background-color: skyblue;
+    margin: 10px;
+    width: 300px;
+}
+
+.btn{
+    float: right;
+    margin-right: 10px;
+}

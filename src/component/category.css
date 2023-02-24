@@ -1,0 +1,11 @@
+.category{
+    border: none;
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+}
+
+#categoryDiv{
+    background-color: black;
+    width: 458px;
+}

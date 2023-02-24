@@ -1,0 +1,10 @@
+li{
+    list-style: none;
+    background-color: skyblue;
+    margin: 10px;
+    width: 300px;
+}
+
+span{
+    margin-left: 100px;
+}
