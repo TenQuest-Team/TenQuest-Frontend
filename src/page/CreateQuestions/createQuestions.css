@@ -1,4 +1,4 @@
-#selectedList{
+#selectedListDiv{
     width: 438px;
     height: 200px;
     background-color:antiquewhite;
@@ -6,7 +6,7 @@
     margin-top: 10px;
 }
 
-#questionList{
+#questionListDiv{
     width: 438px;
     height: 200px;
     background-color: antiquewhite;
@@ -20,4 +20,9 @@
     height: 30px;
     margin-top: 10px;
     font-size: 20px;
+}
+
+#questions{
+    padding-left: 10px;
+    list-style-type: none;
 }

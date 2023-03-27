@@ -1,8 +1,13 @@
 import Header from "../../component/header.js";
+import AddCss from "../../component/addCss.js";
 
 export default function FindID({ $target }) {
     new Header({
         $target 
+    });
+
+    new AddCss({
+        href: "./src/page/FindID/findID.css"
     });
 
     const $findIDForm = document.createElement("form");

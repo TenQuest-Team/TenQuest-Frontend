@@ -1,28 +1,17 @@
 const API_END_POINT = 'https://tenquest.run.goorm.site';
-/*
-export const request = (url) => {
-	return fetch(`${API_END_POINT}${url.indexOf('/') === 0 ? url : `/${url}`}`,
-        {mode: 'no-cors'}
-    )
-        .then(res => {
-            console.log(res);
 
-            if(res.ok) {
-                console.log(res);
-                return res.json();
-            }
-            throw new Error(`${res.status} Error`);
-            
-        })
-        .catch(e => alert(e.message));
-}
-*/
-
-export const request =  (url) => {
-	let response =  fetch(`${API_END_POINT}${url.indexOf('/') === 0 ? url : `/${url}`}`,
-        {mode: 'no-cors'}
-    )
-    alert(`${API_END_POINT}${url.indexOf('/') === 0 ? url : `/${url}`}`)
-    //console.log(response);
-    return response;
-}
+export const request = async (url, options = {}) => {
+    try{
+      const res = await fetch(`${API_END_POINT}${url}`, {
+        ...options
+      });
+  
+      if(res.ok) {
+        return await res.json();
+      }
+  
+      throw new Error('API 호출 오류')
+    } catch(e) {
+      alert(e.message);
+    }
+  }

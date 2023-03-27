@@ -5,118 +5,56 @@ import FindID from "./page/FindID/findID.js";
 import FindPW from "./page/FindPW/findPW.js";
 import Header from "./component/header.js";
 import Home from "./page/Home/home.js";
-import CreateTemplatePreset from "./page/CreateTemplate/createTemplatePreset.js";
 import Category from "./component/category.js";
 import CreateQuestions from "./page/CreateQuestions/createQuestions.js";
 import FinishSubmitAnswer from "./page/FinishSubmitAnswer/finishSubmitAnswer.js";
 import ViewAnswers from "./page/ViewAnswers/viewAnswers.js";
-/*
-export default function App({ $target }){
-    
-    new Login({
-        $target
-    });
-    
-
-    /*
-    const data = [
-        {
-            templateName: "답 해주삼",
-            time: "2023-02-15"
-        },
-        {
-            templateName: "바보들",
-            time: "2023-02-10"
-        }
-    ];
-
-    new Home({
-        $target,
-        initialState: data
-    });
-    */
-
-    /*
-    const data = [
-        {
-            presetName: "For Friends"
-        },
-        {
-            presetName: "For IceBreaking"
-        },
-        {
-            presetName: "For Business Members"
-        }
-    ];
-
-    new CreateTemplatePreset({
-        $target,
-        initialState: data
-    });
-    */
-
-    /*
-    const data = [
-        {
-            question: "내 mbti 뭐게?"
-        },
-        {
-            question: "나의 어떤 성격이 좋아?"
-        },
-        {
-            question: "나 소심해?"
-        }
-    ]
-
-    new CreateQuestions({
-        $target,
-        initialState: data
-    })
-    */
-
-    /*
-    const data = [
-        {
-            nickName: '메롱',
-            time: '2023-02-23'
-        },
-        {
-            nickName: '누구게',
-            time: '2023-02-20'
-        },
-        {
-            nickName: '안녕!!',
-            time: '2023-02-10'
-        }
-    ];
-
-    new ViewAnswers({
-        $target,
-        initialState1: data,
-    })
-}*/
+import { initRouter } from "./router.js";
+import TemplateListPage from "./page/TemplateListPage/templateListPage.js";
+import PresetTemplateListPage from "./page/PresetTemplateList/PresetTemplateListPage.js";
 
 export default function App({ $target }){
-    const homePage = new HomePage({$target});
-    const loginPage = new Login({$target});
+    
+    
+   
     
     this.route = () => {
 
         const { pathname } = location;
+        const loginPage = new Login({$target});
+        const homePage = new HomePage({$target});
+        const templateListPage = new TemplateListPage({$target});
+        const presetTemplateListPage = new PresetTemplateListPage({$target});
+        const createTemplatePage = new CreateQuestions({
+            $target,
+            initialState: []
+        });
+        const viewAnswersPage = new ViewAnswers({
+            $target,
+            initialState: []
+        })
 
         $target.innerHTML = '';
         if(pathname === '/'){
-            loginPage.render();
+            homePage.render();
         }
         else if(pathname.indexOf('/login') > -1) {
             loginPage.render();
+        } else if(pathname.indexOf('/templates') > -1){
+            templateListPage.setState();
+        } else if(pathname.indexOf('/template/preset') > -1){
+            presetTemplateListPage.setState();
+        } else if(pathname.indexOf('/createNewTemplate') > -1) {
+            createTemplatePage.setState();
+        } else if(pathname.indexOf('/template/') === 0){
+            const [,,templateId] = pathname.split('/');
+            viewAnswersPage.setState(templateId);
         }
     }
 
-    this.init = () => {
-        this.route();
-    }
-
+    this.route();
+    initRouter(() => this.route());
+    /*
     window.addEventListener('click', e => {
         if(e.target.className === 'link'){
             e.preventDefault();
@@ -130,8 +68,8 @@ export default function App({ $target }){
             this.route();
         }
     })
-
+*/
     window.addEventListener('popstate', () => this.route());
 
-    this.init();
+    
 }

@@ -1,7 +1,7 @@
-export default function Question({ $target, text, id }){
-    const $questionDiv = document.createElement('div');
-    $target.appendChild($questionDiv);
-    $questionDiv.className = "question";
+export default function Question({ $target, initialState }){
+    const $questionList = document.createElement('ul');
+    $questionList.setAttribute("id", "questions");
+    $target.appendChild($questionList);
 
     const $head = document.getElementsByTagName('head')[0];
     const $link = document.createElement('link');
@@ -9,12 +9,22 @@ export default function Question({ $target, text, id }){
     $link.rel = "stylesheet";
     $head.appendChild($link);
 
-    this.render = () =>{
-        $questionDiv.innerHTML = `
-            <input type="checkbox" id="${id}" value="${text}>
-            <label for="${id}">${text}</label>
-        `
+    this.state = initialState;
+
+    this.setState = nextState => {
+        this.state = nextState;
+        this.render();
     }
 
-    this.render();
+    this.render = () =>{
+        $questionList.innerHTML = `
+            ${this.state.map(({ questionId, questionContent }) => `
+            <li>
+                <input type="checkbox" id="${questionId}" value="${questionContent}" class="question-item">
+                <label for="${questionId}"> ${questionContent}</label>
+            </li>
+            `).join('')}
+            
+        `
+    }
 }
