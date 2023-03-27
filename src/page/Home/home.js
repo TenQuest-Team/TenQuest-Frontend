@@ -3,7 +3,7 @@ import AddCss from "../../component/addCss.js";
 
 export default function Home({ $target, initialState }) {
     new AddCss({
-        href: "./page/Home/home.css"
+        href: "./src/page/Home/home.css"
     });
 
     new Header({

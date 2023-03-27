@@ -22,6 +22,9 @@ export default function App({ $target }){
 
         const { pathname } = location;
         const loginPage = new Login({$target});
+        const findIDPage = new FindID({$target});
+        const findPWPage = new FindPW({$target});
+        const signUpPage = new SignUp({$target});
         const homePage = new HomePage({$target});
         const templateListPage = new TemplateListPage({$target});
         const presetTemplateListPage = new PresetTemplateListPage({$target});
@@ -40,6 +43,12 @@ export default function App({ $target }){
         }
         else if(pathname.indexOf('/login') > -1) {
             loginPage.render();
+        } else if(pathname.indexOf('/findID') > -1){
+            findIDPage.render();
+        } else if(pathname.indexOf('/findPW') > -1) {
+            findPWPage.render();
+        } else if(pathname.indexOf('/signUp') > -1){
+            signUpPage.render();
         } else if(pathname.indexOf('/templates') > -1){
             templateListPage.setState();
         } else if(pathname.indexOf('/template/preset') > -1){

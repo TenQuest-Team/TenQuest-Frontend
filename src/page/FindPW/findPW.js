@@ -1,8 +1,13 @@
 import Header from "../../component/header.js";
+import AddCss from "../../component/addCss.js";
 
 export default function FindPW({ $target }) {
     new Header({
         $target 
+    });
+
+    new AddCss({
+        href: "./src/page/FindPW/findPW.css"
     });
 
     const $findPWForm = document.createElement("form");
@@ -22,7 +27,6 @@ export default function FindPW({ $target }) {
             <br>
             <button id="find_btn"> 찾기 </button>
         `
+        $target.appendChild($findPWForm);
     }
-
-    this.render();
 }

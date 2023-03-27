@@ -2,12 +2,17 @@ import TemplateList from "../../component/templateList.js";
 import { push } from "../../router.js";
 import { request } from "../../api.js";
 import Header from "../../component/header.js";
+import AddCss from "../../component/addCss.js";
 
 export default function TemplateListPage({
   $target
 }) {
   const memberId = localStorage.getItem('memberId');
   const $page = document.createElement('div');
+
+  new AddCss({
+    href: "./src/page/TemplateListPage/templateListPage.css"
+  });
 
   const templateList = new TemplateList({
     $target: $page,

@@ -11,7 +11,6 @@ export default function FindID({ $target }) {
     });
 
     const $findIDForm = document.createElement("form");
-    $target.appendChild($findIDForm);
 
     this.render = () => {
         $findIDForm.innerHTML = `
@@ -24,7 +23,6 @@ export default function FindID({ $target }) {
             <br>
             <button id="find_btn"> 찾기 </button>
         `
+        $target.appendChild($findIDForm);
     }
-
-    this.render();
 }

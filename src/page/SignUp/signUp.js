@@ -1,4 +1,5 @@
 import Header from "../../component/header.js";
+import AddCss from "../../component/addCss.js";
 
 export default function SignUp({ $target }) {
     new Header({
@@ -6,7 +7,10 @@ export default function SignUp({ $target }) {
     });
 
     const $signUpForm = document.createElement("form");
-    $target.appendChild($signUpForm);
+
+    new AddCss({
+        href: "./src/page/SignUp/signUp.css"
+    });
 
     this.render = () => {
         $signUpForm.innerHTML = `
@@ -26,7 +30,6 @@ export default function SignUp({ $target }) {
             <br>
             <button id="login_btn"> 가입하기 </button>
         `
+        $target.appendChild($signUpForm);
     }
-
-    this.render();
 }

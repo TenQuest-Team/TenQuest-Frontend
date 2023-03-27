@@ -2,7 +2,7 @@ import AddCss from "../../component/addCss.js";
 
 export default function FinishSubmitAnswer({$target}){
     new AddCss({
-        href: "./page/FinishSubmitAnswer/finishSubmitAnswer.css"
+        href: "./src/page/FinishSubmitAnswer/finishSubmitAnswer.css"
     });
     
     const $readButton = document.createElement('button');

@@ -1,10 +1,15 @@
 import { request } from "../../api.js";
 import { push } from "../../router.js";
 import Header from "../../component/header.js";
+import AddCss from "../../component/addCss.js";
 
 export default function Login({ $target }) {
     const $loginForm = document.createElement("form");
     $loginForm.setAttribute('method', 'post');
+
+    new AddCss({
+        href: "./src/page/Login/login.css"
+    });
 
     this.render = () => {
         new Header({

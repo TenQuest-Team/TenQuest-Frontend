@@ -1,9 +1,12 @@
 import Header from "../../component/header.js";
 import Category from "../../component/category.js";
 import { request } from "../../api.js";
+import AddCss from "../../component/addCss.js";
 
 export default function ViewAnswers({$target, initialState }){
-    
+    new AddCss({
+        href: "./src/page/ViewAnswers/viewAnswers.css"
+    });
     
     const $answerListDiv = document.createElement('div');
 

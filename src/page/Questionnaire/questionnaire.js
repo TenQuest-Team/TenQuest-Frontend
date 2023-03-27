@@ -1,3 +1,5 @@
+import AddCss from "../../component/addCss.js";
+
 export default function Questionnaire({$target, initialState}){
     new Header({
         $target
