@@ -1,0 +1,28 @@
+#selectedListDiv{
+    width: 438px;
+    height: 200px;
+    background-color:antiquewhite;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#questionListDiv{
+    width: 438px;
+    height: 200px;
+    background-color: antiquewhite;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#createButton{
+    background-color: skyblue;
+    width: 458px;
+    height: 30px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#questions{
+    padding-left: 10px;
+    list-style-type: none;
+}
