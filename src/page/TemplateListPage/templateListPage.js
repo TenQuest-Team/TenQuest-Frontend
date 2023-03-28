@@ -21,7 +21,7 @@ export default function TemplateListPage({
   });
 
   this.setState = async () => {
-    const templates = await request(`/api/v1/templates?member-id=${memberId}`);
+    const templates = await request(`/api/v1/templates/${memberId}`);
     templateList.setState(templates.data);
     this.render();
   }

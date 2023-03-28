@@ -31,9 +31,9 @@ export default function CreateQuestions({ $target, initialState }){
     
 
     this.setState = async () => {
-        const questions = await request(`/api/v1/questions`);
+        const questions = await request(`/api/v1/questions/root`);
         console.log(questions)
-        templateList.setState(templates.data);
+        questionList.setState(questions.data);
         this.render();
       }
     

@@ -20,8 +20,8 @@ export default function PresetTemplateListPage({
   });
 
   this.setState = async () => {
-    //const templates = await request(`/presets`);
-    //presetTemplateList.setState(templates);
+    const templates = await request(`/api/v1/presets`);
+    presetTemplateList.setState(templates);
     this.render();
   }
 
