@@ -13,6 +13,7 @@ import { initRouter } from "./router.js";
 import TemplateListPage from "./page/TemplateListPage/templateListPage.js";
 import PresetTemplateListPage from "./page/PresetTemplateList/PresetTemplateListPage.js";
 import ViewAnswersByQuestion from "./page/ViewAnswersByQuestion/viewAnswersByQuestion.js";
+import ShareTemplatePage from "./page/ShareTemplatePage/shareTemplatePage.js";
 
 export default function App({ $target }){
     
@@ -41,6 +42,7 @@ export default function App({ $target }){
             $target,
             initialState: []
         });
+        const shareTemplatePage = new ShareTemplatePage({$target});
 
         $target.innerHTML = '';
         if(pathname === '/'){
@@ -66,6 +68,8 @@ export default function App({ $target }){
         } else if(pathname.indexOf('/view/') === 0){
             const [,,templateDocId,questionId] = pathname.split('/');
             viewAnswersByQuestionPage.setState({templateDocId, questionId});
+        } else if(pathname.indexOf('/shareTemplate') > -1) {
+            shareTemplatePage.render();
         }
     }
 

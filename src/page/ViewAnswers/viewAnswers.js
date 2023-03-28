@@ -19,8 +19,9 @@ export default function ViewAnswers({$target, initialState }){
 //        const templateDoc = await request(`/api/v1/templates/${memberId}/template-id?value=${nextState}`)
 
     this.setState = async nextState => {
-        const replyerDoc = await request(`/api/v1/answers/replyerNames?value=${nextState}`)
+        const replyerDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${nextState}`)
         this.state = replyerDoc.data;
+        console.log(this.state)
         this.render();
     }
 

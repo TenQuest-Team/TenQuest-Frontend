@@ -3,6 +3,7 @@ import Category from "../../component/category.js";
 import { request } from "../../api.js";
 import Question from "../../component/question.js";
 import AddCss from "../../component/addCss.js";
+import { push } from "../../router.js";
 
 export default function CreateQuestions({ $target, initialState }){
     new AddCss({
@@ -34,7 +35,7 @@ export default function CreateQuestions({ $target, initialState }){
     const categoryId = sessionStorage.getItem('selectedCategory');
 
     this.setState = async () => {
-        const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=${categoryId}&accessId=root`);
+        const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=1&accessId=root`);
 
         this.state = questions.data;
         this.render();
@@ -161,6 +162,7 @@ export default function CreateQuestions({ $target, initialState }){
             "templateDocList": selectedQuestionsArray
         }
 
+        /*
         const createdPost = await request(`/api/v1/templates/${memberId}`, {
             method: 'POST',
             headers: {
@@ -168,6 +170,8 @@ export default function CreateQuestions({ $target, initialState }){
             },
             body: JSON.stringify(requestBody)
         });
-        
+        */
+
+        push('/shareTemplate');
     })
 }
