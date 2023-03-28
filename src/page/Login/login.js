@@ -17,16 +17,26 @@ export default function Login({ $target }) {
         });
         
         $loginForm.innerHTML = `
-            <label for="user_id">아이디</label>
-            <input type = "text" id="user_id" name = "user_id">
+        <form>
+            <div class="login-container">
+            <label for="user_id"></label>
+            <input type = "text" id="user_id" name = "user_id" placeholder="ID">
             <br>
-            <label for="user_pw">비밀번호</label>
-            <input type = "password" id="user_pw" name = "user_pw">
+            <label for="user_pw"></label>
+            <input type = "text" id="user_pw" name = "user_pw" placeholder="Password">
             <br>
-            <button id="login_btn"> 로그인 </button>
-            <button id="find_id_btn"> 아이디 찾기 </button>
-            <button id="find_pw_btn"> 비밀번호 찾기 </button>
-            <button id="sign_up_btn"> 회원가입 </button>
+            <div>
+            <button class = "find-form-btn" id="find_id_btn"> 아이디 찾기 </button>
+            <button class = "find-form-btn" id="find_pw_btn"> 비밀번호 찾기 </button>
+            </div>
+            <div>
+            <button class = "form-btn" id="login_btn"> 로그인 </button>
+            </div>
+            <div>
+                <span>use your account</span>
+                <button class = "join-form-btn" id="sign_up_btn"> 회원가입 </button>
+            </div>
+        </form>
         `
         $target.appendChild($loginForm);
         document.querySelector('#login_btn').addEventListener('click', checkLogin);
