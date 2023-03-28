@@ -16,11 +16,11 @@ export default function ViewAnswers({$target, initialState }){
 
     const $answerList = document.createElement('ul');
     $answerListDiv.appendChild($answerList);
+//        const templateDoc = await request(`/api/v1/templates/${memberId}/template-id?value=${nextState}`)
 
     this.setState = async nextState => {
-        const templateDoc = await request(`/api/v1/templates/${memberId}/template-id?value=${nextState}`)
-        this.state = templateDoc.data.templateDocList;
-        console.log(this.state)
+        const replyerDoc = await request(`/api/v1/answers/replyerNames?value=${nextState}`)
+        this.state = replyerDoc.data;
         this.render();
     }
 
@@ -41,17 +41,15 @@ export default function ViewAnswers({$target, initialState }){
                     categoryId: 2
                 }
             ]
-        }).render()
+        }).render();
 
         console.log(this.state)
 
-        this.state.map(async ({questionId, templateDocId}) => {
-            const questionContent = await request(`/api/v1/questions/content/questionId?value=${questionId}`);
+        this.state.map(replyer => {
             const $li = document.createElement('li');
-            $li.setAttribute('class', 'template-doc-questions');
-            $li.setAttribute('data-questionId', questionId);
-            $li.setAttribute('data-templateDocId', templateDocId);
-            $li.innerText = questionContent.data;
+            $li.setAttribute('class', 'replyerList');
+            //$li.setAttribute('data-replyerId', replyerId);
+            $li.innerText = replyer;
             $answerList.appendChild($li);
         })
 

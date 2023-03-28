@@ -21,7 +21,7 @@ export default function Login({ $target }) {
             <input type = "text" id="user_id" name = "user_id">
             <br>
             <label for="user_pw">비밀번호</label>
-            <input type = "text" id="user_pw" name = "user_pw">
+            <input type = "password" id="user_pw" name = "user_pw">
             <br>
             <button id="login_btn"> 로그인 </button>
             <button id="find_id_btn"> 아이디 찾기 </button>

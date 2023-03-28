@@ -1,4 +1,5 @@
 import { push } from "../router.js";
+import AddCss from "./addCss.js";
 
 export default function TemplateList({
   $target,
@@ -6,7 +7,12 @@ export default function TemplateList({
   type
 }) {
   const $templateList = document.createElement('div');
+  $templateList.id = 'templateListDiv'
   $target.appendChild($templateList);
+
+  new AddCss({
+    href: "./src/component/templateList.css"
+  });
 
   this.state = initialState;
   this.setState = nextState => {
@@ -19,9 +25,9 @@ export default function TemplateList({
     if(type === "TemplateList"){
       console.log(this.state)
       $templateList.innerHTML = `
-        <ul>
+        <ul id="templateListUl">
           ${this.state.map(template => `
-            <li id="${template.templateId}" class="templateList">${template.templateName}</li>
+            <li id="${template.templateId}" class="templateList"><p class="templateName">${template.templateName}</p><p class="createdAt">${template.createdAt.split('T')[0]}</p></li>
           `).join('')}
         </ul>
       `

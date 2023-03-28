@@ -1,28 +1,31 @@
 import { request } from "../api.js";
+import AddCss from "./addCss.js";
+import { push } from "../router.js";
 
 export default function Category({ $target, initialState }){
     const $categoryDiv = document.createElement('div');
     $target.appendChild($categoryDiv);
     $categoryDiv.id = "categoryDiv";
 
-    const $head = document.getElementsByTagName('head')[0];
-    const $link = document.createElement('link');
-    $link.href = "./src/component/category.css";
-    $link.rel = "stylesheet";
-    $head.appendChild($link);
+    new AddCss({
+        href: "./src/component/category.css"
+    });
 
     this.state = initialState;
 
     if(this.state !== []){
-        console.log(this.state)
-        this.render =  () => {
+        console.log("umm")
+        this.render = () => {
             $categoryDiv.innerHTML = `
                 ${this.state.map(({ categoryName, categoryId }) => `
-                    <button id="${categoryId}" class="viewAnswersCategory">${categoryName}</button>
+                    <button data-categoryId="${categoryId}" class="categories">${categoryName}</button>
                 `).join('')}
             `;
         }
+    }
+        /*
     } else {
+        console.log("e")
         this.render = async () => {
             const categoryData = await request(`/api/v1/categories`);
             const categories = categoryData.data;
@@ -36,4 +39,13 @@ export default function Category({ $target, initialState }){
             }
         }
     }
+*/
+    $categoryDiv.addEventListener('click', e => {
+        const $category = e.target.closest('.categories');
+        const categoryDataset = $category.dataset
+        if($category){
+          sessionStorage.setItem('selectedCategory', categoryDataset.categoryid);
+          push('/createNewTemplate');
+        }
+    });
 }
