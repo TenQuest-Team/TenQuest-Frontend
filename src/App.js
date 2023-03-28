@@ -3,6 +3,7 @@ import HomePage from "./page/HomePage.js";
 import SignUp from "./page/SignUp/signUp.js";
 import FindID from "./page/FindID/findID.js";
 import FindPW from "./page/FindPW/findPW.js";
+import Questionnaire from "./page/Questionnaire/questionnaire.js";
 import Header from "./component/header.js";
 import Home from "./page/Home/home.js";
 import Category from "./component/category.js";
@@ -43,6 +44,7 @@ export default function App({ $target }){
             initialState: []
         });
         const shareTemplatePage = new ShareTemplatePage({$target});
+        const questionnairePage = new Questionnaire({$target, initialState: []})
 
         $target.innerHTML = '';
         if(pathname === '/'){
@@ -70,7 +72,11 @@ export default function App({ $target }){
             viewAnswersByQuestionPage.setState({templateDocId, questionId});
         } else if(pathname.indexOf('/shareTemplate') > -1) {
             shareTemplatePage.render();
+        } else if(pathname.indexOf('/reply/') === 0) {
+            const [,,templateId] = pathname.split('/');
+            questionnairePage.setState(templateId);
         }
+
     }
 
     this.route();

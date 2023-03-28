@@ -32,7 +32,25 @@ export default function CreateQuestions({ $target, initialState }){
     $createButton.textContent = "Create Template!";
     $createButton.id = "createButton";
     
-    const categoryId = sessionStorage.getItem('selectedCategory');
+    const $modal = document.createElement('div');
+    $modal.className = "modal hidden";
+
+    $modal.innerHTML = `
+        <div class="bg"></div>
+        <div class="modalBox">
+            <p><strong>Create Your Own Question!</strong></p>
+            <label for="newTemplateTitle"><p>템플릿 제목을 입력해주세요.</p></label>
+            <input id="newTemplateTitle" type="text">
+            <br>
+            <br>
+            <input id="checkIsPublic" type="checkbox">
+            <label for="checkIsPublic">템플릿 비공개</label>
+            <br>
+            <br>
+            <button class="createSubmitBtn">템플릿 생성하기</button>
+            <button class="closeBtn">✖</button>
+        </div>  
+    `;
 
     this.setState = async () => {
         const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=1&accessId=root`);
@@ -75,6 +93,7 @@ export default function CreateQuestions({ $target, initialState }){
             $target: $questionListDiv,
             initialState: this.state
         }).render()
+        $target.appendChild($modal);
         
         $target.appendChild($categoryListDiv);
         $target.appendChild($questionListDiv);
@@ -144,34 +163,42 @@ export default function CreateQuestions({ $target, initialState }){
     $createButton.addEventListener('click', async (e) => {
         e.preventDefault();
 
-        const selectedQuestions = $selectedListDiv.getElementsByClassName("selectedQuestion");
+        document.querySelector('.modal').classList.remove("hidden");
         
-        const selectedQuestionsArray = [];
-        for(let i=0; i<selectedQuestions.length; i++){
-            selectedQuestionsArray.push({
-                "questionOrder": (i+1),
-                "questionId": selectedQuestions[i].id
+        document.querySelector('.closeBtn').addEventListener('click', () => {
+            document.querySelector('.modal').classList.add("hidden");
+        })
+
+        document.querySelector('.createSubmitBtn').addEventListener('click', async () => {
+            const selectedQuestions = $selectedListDiv.getElementsByClassName("selectedQuestion");
+        
+            const selectedQuestionsArray = [];
+            for(let i=0; i<selectedQuestions.length; i++){
+                selectedQuestionsArray.push({
+                    "questionOrder": (i+1),
+                    "questionId": selectedQuestions[i].id
+                });
+            }
+            
+            const requestBody = {
+                "templateDto": {
+                    "templateName": document.querySelector('#newTemplateTitle').value,
+                    "isPublic": !(document.querySelector('#checkIsPublic').checked)
+                },
+                "templateDocList": selectedQuestionsArray
+            }   
+            
+            const createdPost = await request(`/api/v1/templates/${memberId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
             });
-        }
-        
-        const requestBody = {
-            "templateDto": {
-                "templateName": "임시 제목",
-                "isPublic": true
-            },
-            "templateDocList": selectedQuestionsArray
-        }
 
-        /*
-        const createdPost = await request(`/api/v1/templates/${memberId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        });
-        */
-
-        push('/shareTemplate');
+            if(createdPost){
+                push(`/shareTemplate/${createdPost.data.templateDto.templateId}`);
+            }
+        })
     })
 }

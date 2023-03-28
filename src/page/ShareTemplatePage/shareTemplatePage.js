@@ -17,9 +17,10 @@ export default function ShareTemplatePage({$target}) {
   }
 
   $shareButton.addEventListener('click', () => {
+    const [,,templateId] = location.pathname.split('/');
     const shareTitle = "공유하기 기능 테스트";
     const shareText = "공유하기 기능입니다";
-    const contentURL = "/share/shareUrl";
+    const contentURL = `/reply/${templateId}`;
     let URLPreFix = "";
 
     URLPreFix = URLPreFix + "//" + location.host;

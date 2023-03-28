@@ -21,15 +21,25 @@ export default function ViewAnswers({$target, initialState }){
     this.setState = async nextState => {
         const replyerDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${nextState}`)
         this.state = replyerDoc.data;
-        console.log(this.state)
         this.render();
     }
 
+    const $category1 = document.createElement('button');
+    $category1.setAttribute("data-categoryId", "1");
+    $category1.className = "categories";
+    $category1.innerText = '성격';
+
+    const $category2 = document.createElement('button');
+    $category2.setAttribute("data-categoryId", "2");
+    $category2.className = "categories";
+    $category2.innerText = '외모';
+    
     this.render = () => {
         new Header({
             $target
         });
     
+        /*
         new Category({
             $target,
             initialState: [
@@ -43,14 +53,13 @@ export default function ViewAnswers({$target, initialState }){
                 }
             ]
         }).render();
+        */
 
-        console.log(this.state)
-
-        this.state.map(replyer => {
+        this.state.map(({replyerId, replyerName}) => {
             const $li = document.createElement('li');
             $li.setAttribute('class', 'replyerList');
-            //$li.setAttribute('data-replyerId', replyerId);
-            $li.innerText = replyer;
+            $li.setAttribute('data-replyerId', replyerId);
+            $li.innerText = replyerName;
             $answerList.appendChild($li);
         })
 
