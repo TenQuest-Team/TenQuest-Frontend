@@ -39,7 +39,7 @@ export default function TemplateList({
   
   $templateList.addEventListener('click', e => {
     const $li = e.target.closest('.templateList');
-    
+    console.log($li)
     if($li){
       push(`/template/${$li.id}`);
     }

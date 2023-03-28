@@ -12,6 +12,7 @@ import ViewAnswers from "./page/ViewAnswers/viewAnswers.js";
 import { initRouter } from "./router.js";
 import TemplateListPage from "./page/TemplateListPage/templateListPage.js";
 import PresetTemplateListPage from "./page/PresetTemplateList/PresetTemplateListPage.js";
+import ViewAnswersByQuestion from "./page/ViewAnswersByQuestion/viewAnswersByQuestion.js";
 
 export default function App({ $target }){
     
@@ -35,7 +36,11 @@ export default function App({ $target }){
         const viewAnswersPage = new ViewAnswers({
             $target,
             initialState: []
-        })
+        });
+        const viewAnswersByQuestionPage = new ViewAnswersByQuestion({
+            $target,
+            initialState: []
+        });
 
         $target.innerHTML = '';
         if(pathname === '/'){
@@ -58,6 +63,9 @@ export default function App({ $target }){
         } else if(pathname.indexOf('/template/') === 0){
             const [,,templateId] = pathname.split('/');
             viewAnswersPage.setState(templateId);
+        } else if(pathname.indexOf('/view/') === 0){
+            const [,,templateDocId,questionId] = pathname.split('/');
+            viewAnswersByQuestionPage.setState({templateDocId, questionId});
         }
     }
 

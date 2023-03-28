@@ -30,10 +30,10 @@ export default function CreateQuestions({ $target, initialState }){
     $createButton.id = "createButton";
     
 
-    this.setState = async () => {
+    this.setState = async nextState => {
         const questions = await request(`/api/v1/questions/root`);
         console.log(questions)
-        questionList.setState(questions.data);
+        this.state = (questions.data);
         this.render();
       }
     
