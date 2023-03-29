@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="fix conflict">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/FindID/findID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindID/findID.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/FindPW/findPW.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindPW/findPW.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/FindPW/findPW.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindPW/findPW.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/Login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/presetTemplateListPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/presetTemplateListPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/SignUp/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignUp/signUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TemplateListPage/templateListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TemplateListPage/templateListPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +22,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -42,14 +49,14 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/garden/IdeaProjects/TenQuest-Frontend"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/garden/IdeaProjects/TenQuest-Frontend&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="TenQuest-Frontend" />
@@ -74,9 +81,19 @@
       <option name="presentableId" value="Default" />
       <updated>1679976843132</updated>
     </task>
+    <task id="LOCAL-00001" summary="fix conflict">
+      <created>1680027205339</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680027205339</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fix conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix conflict" />
   </component>
 </project>

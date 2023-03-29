@@ -21,7 +21,7 @@ export default function FindID({ $target }) {
             <label for="user_email">이메일</label>
             <input type = "text" id="user_email" name = "user_email">
             <br>
-            <button id="find_btn"> 찾기 </button>
+            <button class="find-form-btn" id="find_btn"> 찾기 </button>
         `
         $target.appendChild($findIDForm);
     }
