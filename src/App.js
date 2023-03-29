@@ -43,6 +43,10 @@ export default function App({ $target }){
             $target,
             initialState: []
         });
+        const viewAnswersByAnswerPage = new ViewAnswersByAnswer({
+            $target,
+            initialState: []
+        });
         const shareTemplatePage = new ShareTemplatePage({$target});
         const questionnairePage = new Questionnaire({$target, initialState: []})
 
@@ -67,9 +71,12 @@ export default function App({ $target }){
         } else if(pathname.indexOf('/template/') === 0){
             const [,,templateId] = pathname.split('/');
             viewAnswersPage.setState(templateId);
-        } else if(pathname.indexOf('/view/') === 0){
-            const [,,templateDocId,questionId] = pathname.split('/');
+        } else if(pathname.indexOf('/view/question/') === 0){
+            const [,,,templateDocId, questionId] = pathname.split('/');
             viewAnswersByQuestionPage.setState({templateDocId, questionId});
+        } else if(pathname.indexOf('/view/answer/') === 0){
+            const [,,,replyerId] = pathname.split('/');
+            viewAnswersByAnswerPage.setState(replyerId);
         } else if(pathname.indexOf('/shareTemplate') > -1) {
             shareTemplatePage.render();
         } else if(pathname.indexOf('/reply/') === 0) {

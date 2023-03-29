@@ -10,7 +10,7 @@ export default function PresetTemplateListPage({
   const $page = document.createElement('div');
 
   new AddCss({
-    href: "./src/page/PresetTemplateListPage/presetTemplateListPage.css"
+    href: "./src/page/PresetTemplateList/presetTemplateListPage.css"
   });
 
   const presetTemplateList = new TemplateList({
@@ -30,7 +30,7 @@ export default function PresetTemplateListPage({
 
   const $createOwnTemplate = document.createElement('button');
   $createOwnTemplate.innerText = "create own template";
-  $createOwnTemplate.setAttribute("id", "createOwnTemplate");
+  $createOwnTemplate.setAttribute("class", "createOwnTemplate");
 
   this.render = async () => {
     new Header({

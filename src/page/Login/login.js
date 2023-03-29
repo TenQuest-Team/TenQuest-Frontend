@@ -23,7 +23,7 @@ export default function Login({ $target }) {
             <input type = "text" id="user_id" name = "user_id" placeholder="ID">
             <br>
             <label for="user_pw"></label>
-            <input type = "text" id="user_pw" name = "user_pw" placeholder="Password">
+            <input type = "password" id="user_pw" name = "user_pw" placeholder="Password">
             <br>
             <div>
             <button class = "find-form-btn" id="find_id_btn"> 아이디 찾기 </button>

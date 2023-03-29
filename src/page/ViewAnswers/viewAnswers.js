@@ -16,10 +16,11 @@ export default function ViewAnswers({$target, initialState }){
 
     const $answerList = document.createElement('ul');
     $answerListDiv.appendChild($answerList);
-//        const templateDoc = await request(`/api/v1/templates/${memberId}/template-id?value=${nextState}`)
 
     this.setState = async nextState => {
         const replyerDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${nextState}`)
+        sessionStorage.setItem('templateId', nextState);
+        sessionStorage.setItem('viewType', 'answers');
         this.state = replyerDoc.data;
         this.render();
     }
@@ -27,45 +28,43 @@ export default function ViewAnswers({$target, initialState }){
     const $category1 = document.createElement('button');
     $category1.setAttribute("data-categoryId", "1");
     $category1.className = "categories";
-    $category1.innerText = '성격';
+    $category1.innerText = 'Answers';
 
     const $category2 = document.createElement('button');
     $category2.setAttribute("data-categoryId", "2");
     $category2.className = "categories";
-    $category2.innerText = '외모';
+    $category2.innerText = 'Questions';
     
     this.render = () => {
-        new Header({
-            $target
-        });
-    
-        /*
-        new Category({
-            $target,
-            initialState: [
-                {
-                    categoryName: 'Answers',
-                    categoryId: 1
-                },
-                {
-                    categoryName: 'Questions',
-                    categoryId: 2
-                }
-            ]
-        }).render();
-        */
+        //new Header({$target});
 
-        this.state.map(({replyerId, replyerName}) => {
-            const $li = document.createElement('li');
-            $li.setAttribute('class', 'replyerList');
-            $li.setAttribute('data-replyerId', replyerId);
-            $li.innerText = replyerName;
-            $answerList.appendChild($li);
-        })
+        $target.appendChild($category1);
+        $target.appendChild($category2);
+
+        console.log(this.state)
+        if(sessionStorage.getItem('viewType') === 'answers'){
+            this.state.map(({replyerId, replyerName}) => {
+                const $li = document.createElement('li');
+                $li.setAttribute('class', 'replyerList');
+                $li.setAttribute('data-replyerId', replyerId);
+                $li.innerText = replyerName;
+                $answerList.appendChild($li);
+            })
+        } else {
+            this.state.templateDocList.map(({templateDocId, questionContent, questionId}) => {
+                const $li = document.createElement('li');
+                $li.setAttribute('class', 'questionList');
+                $li.setAttribute('data-templateDocId', templateDocId);
+                $li.setAttribute('data-questionId', questionId);
+                $li.innerText = questionContent;
+                $answerList.appendChild($li);
+            })
+        }
 
         $target.appendChild($answerListDiv);
     }
 
+    /*
     $answerList.addEventListener('click', e => {
         const $question = e.target.closest('.template-doc-questions');
         const dataset = $question.dataset;
@@ -73,5 +72,39 @@ export default function ViewAnswers({$target, initialState }){
         if($question){
             push(`/view/${dataset.templatedocid}/${dataset.questionid}`);
         }
+    })
+    */
+
+    $answerList.addEventListener('click', e => {
+        if(sessionStorage.getItem('viewType') === 'answer'){
+            const $answer = e.target.closest('.replyerList');
+            const dataset = $answer.dataset;
+
+            if($answer){
+                push(`/view/answer/${dataset.replyerid}`);
+            }
+        } else {
+            const $answer = e.target.closest('.questionList');
+            const dataset = $answer.dataset;
+            
+            if($answer){
+                push(`/view/question/${dataset.templatedocid}/${dataset.questionid}`);
+            }
+        }
+    })
+
+    $category1.addEventListener('click', () => {
+        $answerList.innerHTML = ''
+        //$target.innerHTML = ''
+        this.setState(sessionStorage.getItem('templateId'));
+    })
+
+    $category2.addEventListener('click', async () => {
+        const templateDoc = await request(`/api/v1/templates/template-id?value=${sessionStorage.getItem('templateId')}`)
+        this.state = templateDoc.data;
+        sessionStorage.setItem('viewType', 'questions');
+        $answerList.innerHTML = '';
+       // $target.innerHTML = '';
+        this.render();    
     })
 }
