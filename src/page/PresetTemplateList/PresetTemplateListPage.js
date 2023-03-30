@@ -9,9 +9,7 @@ export default function PresetTemplateListPage({
 }) {
   const $page = document.createElement('div');
 
-  new AddCss({
-    href: "./src/page/PresetTemplateList/presetTemplateListPage.css"
-  });
+  
 
   const presetTemplateList = new TemplateList({
     $target: $page,
@@ -33,6 +31,9 @@ export default function PresetTemplateListPage({
   $createOwnTemplate.setAttribute("class", "createOwnTemplate");
 
   this.render = async () => {
+    new AddCss({
+      href: "./src/page/PresetTemplateList/presetTemplateListPage.css"
+    });
     new Header({
       $target 
     });

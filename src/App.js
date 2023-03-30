@@ -14,6 +14,7 @@ import { initRouter } from "./router.js";
 import TemplateListPage from "./page/TemplateListPage/templateListPage.js";
 import PresetTemplateListPage from "./page/PresetTemplateList/PresetTemplateListPage.js";
 import ViewAnswersByQuestion from "./page/ViewAnswersByQuestion/viewAnswersByQuestion.js";
+import ViewAnswersByAnswer from "./page/ViewAnswersByAnswer/viewAnswersByAnswer.js";
 import ShareTemplatePage from "./page/ShareTemplatePage/shareTemplatePage.js";
 
 export default function App({ $target }){
@@ -49,12 +50,14 @@ export default function App({ $target }){
         });
         const shareTemplatePage = new ShareTemplatePage({$target});
         const questionnairePage = new Questionnaire({$target, initialState: []})
+        const finishSubmitAnswerPage = new FinishSubmitAnswer({$target});
 
         $target.innerHTML = '';
-        if(pathname === '/'){
+        /*if(pathname === '/'){
             homePage.render();
         }
-        else if(pathname.indexOf('/login') > -1) {
+        else */
+        if(pathname === '/') {
             loginPage.render();
         } else if(pathname.indexOf('/findID') > -1){
             findIDPage.render();
@@ -82,28 +85,15 @@ export default function App({ $target }){
         } else if(pathname.indexOf('/reply/') === 0) {
             const [,,templateId] = pathname.split('/');
             questionnairePage.setState(templateId);
+        } else if(pathname.indexOf('/submitAnswer/') === 0){
+            const [,,templateId] = pathname.split('/');
+            finishSubmitAnswerPage.setState(templateId);
         }
 
     }
 
     this.route();
     initRouter(() => this.route());
-    /*
-    window.addEventListener('click', e => {
-        if(e.target.className === 'link'){
-            e.preventDefault();
-            let href;
-            if(e.target.tagName === 'BUTTON'){
-                href = e.target.dataset.href;
-            } else{
-                href = e.target.href;
-            }
-            history.pushState(null, null, href.replace(location.origin, ''));
-            this.route();
-        }
-    })
-*/
-    window.addEventListener('popstate', () => this.route());
 
-    
+    window.addEventListener('popstate', () => this.route());
 }

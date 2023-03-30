@@ -11,7 +11,7 @@ export default function ViewAnswers({$target, initialState }){
     
     const $answerListDiv = document.createElement('div');
 
-    const memberId = localStorage.getItem("memberId");
+    const memberId = sessionStorage.getItem("memberId");
     this.state = initialState;
 
     const $answerList = document.createElement('ul');
@@ -47,6 +47,7 @@ export default function ViewAnswers({$target, initialState }){
                 const $li = document.createElement('li');
                 $li.setAttribute('class', 'replyerList');
                 $li.setAttribute('data-replyerId', replyerId);
+                $li.setAttribute('data-replyerName', replyerName);
                 $li.innerText = replyerName;
                 $answerList.appendChild($li);
             })
@@ -76,11 +77,11 @@ export default function ViewAnswers({$target, initialState }){
     */
 
     $answerList.addEventListener('click', e => {
-        if(sessionStorage.getItem('viewType') === 'answer'){
+        if(sessionStorage.getItem('viewType') === 'answers'){
             const $answer = e.target.closest('.replyerList');
             const dataset = $answer.dataset;
-
             if($answer){
+                sessionStorage.setItem('replyerName', dataset.replyername);
                 push(`/view/answer/${dataset.replyerid}`);
             }
         } else {
@@ -93,10 +94,12 @@ export default function ViewAnswers({$target, initialState }){
         }
     })
 
-    $category1.addEventListener('click', () => {
-        $answerList.innerHTML = ''
-        //$target.innerHTML = ''
-        this.setState(sessionStorage.getItem('templateId'));
+    $category1.addEventListener('click', async() => {
+        const templateDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${sessionStorage.getItem('templateId')}`)
+        this.state = templateDoc.data;
+        sessionStorage.setItem('viewType', 'answers');
+        $answerList.innerHTML = '';
+        this.render();  
     })
 
     $category2.addEventListener('click', async () => {
@@ -104,7 +107,6 @@ export default function ViewAnswers({$target, initialState }){
         this.state = templateDoc.data;
         sessionStorage.setItem('viewType', 'questions');
         $answerList.innerHTML = '';
-       // $target.innerHTML = '';
         this.render();    
     })
 }

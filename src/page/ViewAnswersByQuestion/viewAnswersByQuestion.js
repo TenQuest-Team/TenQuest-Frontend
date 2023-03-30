@@ -12,7 +12,7 @@ export default function ViewAnswersByQuestion({$target, initialState }){
     */
     const $answerListDiv = document.createElement('div');
 
-    const memberId = localStorage.getItem("memberId");
+    const memberId = sessionStorage.getItem("memberId");
     this.state = initialState;
 
     const $answerList = document.createElement('ul');

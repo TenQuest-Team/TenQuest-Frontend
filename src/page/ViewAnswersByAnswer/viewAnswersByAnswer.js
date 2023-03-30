@@ -4,7 +4,7 @@ import { request } from "../../api.js";
 import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
-export default function ViewAnswersByAnswre({$target, initialState }){
+export default function ViewAnswersByAnswer({$target, initialState }){
     /*
     new AddCss({
         href: "./src/page/ViewAnswers/viewAnswers.css"
@@ -12,42 +12,51 @@ export default function ViewAnswersByAnswre({$target, initialState }){
     */
     const $answerListDiv = document.createElement('div');
 
-    const memberId = localStorage.getItem("memberId");
+    const memberId = sessionStorage.getItem("memberId");
     this.state = initialState;
 
     const $answerList = document.createElement('ul');
     $answerListDiv.appendChild($answerList);
 
     let questionContent = '';
-    
+    const questionContentList = [];
     this.setState = async nextState => {
-        const answerDoc = await request(`/api/v1/answers/docId?value=${nextState.templateDocId}`)
+        const answerDoc = await request(`/api/v1/answers/replyerId?value=${nextState}`)
         this.state = answerDoc.data;
 
-        const questionRes = await request(`/api/v1/questions/content/questionId?value=${nextState.questionId}`)
-        questionContent = questionRes.data;
+        const templateDoc = await(request(`/api/v1/templates/template-id?value=${sessionStorage.getItem('templateId')}`))
+        const templateDocList = templateDoc.data.templateDocList;
+        if(templateDocList){
+            templateDocList.map(({questionContent}) => 
+                questionContentList.push(questionContent)
+            );
+        }
         this.render();
     }
 
     const $h2 = document.createElement('h2');
-
+    let count = 0;
     this.render = () => {
         new Header({
             $target
         });
     
-        $h2.innerText = questionContent;
-        $target.appendChild($h2);    
+        console.log(questionContentList)
+        $h2.innerText = sessionStorage.getItem('replyerName');
+        $target.appendChild($h2); 
+           
         
-        this.state.map(({answerContent}) => {
+        this.state.map( ({answerContent}) => {
             const $li = document.createElement('li');
-            //$li.setAttribute('class', 'template-doc-questions');
-            //$li.setAttribute('data-quesiontId', questionId);
-            //$li.setAttribute('data-templateDocId', templateDocId);
-            $li.innerText = answerContent;
+            $li.innerText = `
+                Q. ${questionContentList[count++]}
+                A. ${answerContent}
+            `;
             $answerList.appendChild($li);
+            return
         })
         
+        console.log($answerList)
         $target.appendChild($answerListDiv);
     }
 /*

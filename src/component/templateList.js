@@ -47,6 +47,7 @@ export default function TemplateList({
     const $li = e.target.closest('.templateList');
     console.log($li)
     if($li){
+      sessionStorage.setItem('templateId', $li.id)
       push(`/template/${$li.id}`);
     }
   });

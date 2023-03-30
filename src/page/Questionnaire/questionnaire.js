@@ -1,6 +1,7 @@
 import AddCss from "../../component/addCss.js";
 import Header from "../../component/header.js";
 import { request } from "../../api.js";
+import { push } from "../../router.js";
 
 export default function Questionnaire({$target, initialState}){
     
@@ -8,8 +9,9 @@ export default function Questionnaire({$target, initialState}){
     const $questionListDiv = document.createElement('div');
 
     this.state = initialState;
-
+    let templateId = '';
     this.setState = async nextState => {
+        templateId = nextState;
         const questions = await request(`/api/v1/templates/template-id?value=${nextState}`);
         this.state = questions.data;
         this.render();
@@ -93,6 +95,7 @@ export default function Questionnaire({$target, initialState}){
     }
 
     $submitAnswerBtn.addEventListener('click', async () => {
+        
         const questions = $questionListDiv.getElementsByTagName('input');
         for(let i=0; i<questions.length; i++){
             answerContentList.push(questions[i].value);
@@ -116,6 +119,10 @@ export default function Questionnaire({$target, initialState}){
                 },
                 body: JSON.stringify(requestBody)
             })
+
+            //e.preventDefault();
+            push(`/submitAnswer/${templateId}`);
+            
         }
     })
 }

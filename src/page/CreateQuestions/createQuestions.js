@@ -10,7 +10,7 @@ export default function CreateQuestions({ $target, initialState }){
         href: "./src/page/CreateQuestions/createQuestions.css"
     });
 
-    const memberId = localStorage.getItem('memberId');
+    const memberId = sessionStorage.getItem('memberId');
     const $categoryListDiv = document.createElement('div');
     $categoryListDiv.id = "categoryListDiv";
 

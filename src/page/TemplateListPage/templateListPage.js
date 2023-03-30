@@ -7,7 +7,7 @@ import AddCss from "../../component/addCss.js";
 export default function TemplateListPage({
   $target
 }) {
-  const memberId = localStorage.getItem('memberId');
+  const memberId = sessionStorage.getItem('memberId');
   const $page = document.createElement('div');
 
   new AddCss({
@@ -35,9 +35,9 @@ export default function TemplateListPage({
     new Header({
       $target 
     });
+    $target.appendChild($page);
 
     $target.appendChild($createTemplate);
-    $target.appendChild($page);
   }
   
   $createTemplate.addEventListener('click', (e) => {

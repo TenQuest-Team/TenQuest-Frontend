@@ -7,11 +7,12 @@ export default function Login({ $target }) {
     const $loginForm = document.createElement("form");
     $loginForm.setAttribute('method', 'post');
 
-    new AddCss({
-        href: "./src/page/Login/login.css"
-    });
+    
 
     this.render = () => {
+        new AddCss({
+            href: "./src/page/Login/login.css"
+        });
         new Header({
             $target 
         });
@@ -70,11 +71,13 @@ export default function Login({ $target }) {
         const memberId = memberInfo.data.memberId;
         const userPassword = memberInfo.data.userInfo;
         const userName = memberInfo.data.userName;
-
+       
         if(input_pw.value === userPassword) {
             alert(userName + "님 환영합니다.");
-            localStorage.setItem('memberId', memberId);
+            sessionStorage.setItem('memberId', memberId);
             push('/templates');
+        } else {
+            console.log("umm")
         }
         
     }
