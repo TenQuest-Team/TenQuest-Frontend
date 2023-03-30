@@ -6,11 +6,15 @@ export default function SignUp({ $target }) {
         $target 
     });
 
-    const $signUpForm = document.createElement("form");
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
+    const $signUpDiv = document.createElement('div');
+    $signUpDiv.id = 'signUpDiv';
 
-    new AddCss({
-        href: "./src/page/SignUp/signUp.css"
-    });
+    const $signUpForm = document.createElement("form");
+    $signUpForm.id = "signUpForm";
 
     this.render = () => {
         $signUpForm.innerHTML = `
@@ -30,6 +34,7 @@ export default function SignUp({ $target }) {
             <br>
             <button id="login_btn" class="submit-btn"> 가입하기 </button>
         `
-        $target.appendChild($signUpForm);
+        $signUpDiv.appendChild($signUpForm);
+        $body.appendChild($signUpDiv);
     }
 }

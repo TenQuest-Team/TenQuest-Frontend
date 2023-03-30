@@ -5,11 +5,10 @@ import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function ViewAnswersByAnswer({$target, initialState }){
-    /*
-    new AddCss({
-        href: "./src/page/ViewAnswers/viewAnswers.css"
-    });
-    */
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
     const $answerListDiv = document.createElement('div');
 
     const memberId = sessionStorage.getItem("memberId");
@@ -59,15 +58,4 @@ export default function ViewAnswersByAnswer({$target, initialState }){
         console.log($answerList)
         $target.appendChild($answerListDiv);
     }
-/*
-    $answerList.addEventListener('click', e => {
-        const $question = e.target.closest('.template-doc-questions');
-        
-        const dataset = $question.dataset;
-
-        if($question){
-            push(`/view/template-id=${dataset.templatedocid}/${dataset.questionid}`);
-        }
-    })
-    */
 }

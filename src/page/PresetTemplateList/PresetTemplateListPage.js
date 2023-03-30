@@ -7,7 +7,13 @@ import AddCss from "../../component/addCss.js";
 export default function PresetTemplateListPage({
   $target
 }) {
+
+  const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
   const $page = document.createElement('div');
+  $page.id = 'presetTemplateListDiv';
 
   const presetTemplateList = new TemplateList({
     $target: $page,
@@ -31,16 +37,12 @@ export default function PresetTemplateListPage({
   $createOwnTemplate.setAttribute("class", "createOwnTemplate");
 
   this.render = async () => {
-    new AddCss({
-      href: "./src/page/PresetTemplateList/presetTemplateListPage.css"
-    });
-
     new Header({
       $target 
     });
-    $target.appendChild($h2);
-    $target.appendChild($createOwnTemplate);
-    $target.appendChild($page);
+    $page.appendChild($h2);
+    $page.appendChild($createOwnTemplate);
+    $body.appendChild($page);
   }
 
   $createOwnTemplate.addEventListener('click', (e) => {

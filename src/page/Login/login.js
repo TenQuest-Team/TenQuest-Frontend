@@ -4,15 +4,17 @@ import Header from "../../component/header.js";
 import AddCss from "../../component/addCss.js";
 
 export default function Login({ $target }) {
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
     const $loginForm = document.createElement("form");
     $loginForm.setAttribute('method', 'post');
 
-    
 
     this.render = () => {
-        new AddCss({
-            href: "./src/page/Login/login.css"
-        });
+        
+
         new Header({
             $target 
         });

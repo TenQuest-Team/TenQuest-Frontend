@@ -7,12 +7,14 @@ import AddCss from "../../component/addCss.js";
 export default function TemplateListPage({
   $target
 }) {
+
+  const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
   const memberId = sessionStorage.getItem('memberId');
   const $page = document.createElement('div');
 
-  new AddCss({
-    href: "./src/page/TemplateListPage/templateListPage.css"
-  });
 
   const templateList = new TemplateList({
     $target: $page,

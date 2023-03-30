@@ -6,9 +6,12 @@ export default function FindID({ $target }) {
         $target 
     });
 
-    new AddCss({
-        href: "./src/page/FindID/findID.css"
-    });
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
+    const $loginDiv = document.createElement('div');
+    $loginDiv.class = 'loginDiv';
 
     const $findIDForm = document.createElement("form");
 
@@ -23,6 +26,7 @@ export default function FindID({ $target }) {
             <br>
             <button class="find-form-btn" id="find_btn"> 찾기 </button>
         `
-        $target.appendChild($findIDForm);
+        $loginDiv.appendChild($findIDForm);
+        $body.appendChild($loginDiv);
     }
 }

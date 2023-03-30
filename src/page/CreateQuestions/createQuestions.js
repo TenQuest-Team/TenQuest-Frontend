@@ -6,10 +6,10 @@ import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function CreateQuestions({ $target, initialState }){
-    new AddCss({
-        href: "./src/page/CreateQuestions/createQuestions.css"
-    });
-
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+    
     const memberId = sessionStorage.getItem('memberId');
     const $categoryListDiv = document.createElement('div');
     $categoryListDiv.id = "categoryListDiv";
@@ -81,9 +81,6 @@ export default function CreateQuestions({ $target, initialState }){
     $categoryListDiv.appendChild($category3);
 
     this.render = () => {
-        new AddCss({
-            href: "./page/CreateQuestions/createQuestions.css"
-        });
 
         new Header({
             $target
@@ -93,12 +90,14 @@ export default function CreateQuestions({ $target, initialState }){
             $target: $questionListDiv,
             initialState: this.state
         }).render()
-        $target.appendChild($modal);
+        $body.appendChild($modal);
         
-        $target.appendChild($categoryListDiv);
-        $target.appendChild($questionListDiv);
-        $target.appendChild($selectedListDiv);
-        $target.appendChild($createButton);
+        $body.appendChild($categoryListDiv);
+        $body.appendChild($questionListDiv);
+        $body.appendChild($selectedListDiv);
+        $body.appendChild($createButton);
+
+        $target.appendChild($body);
     } 
 
     const category = document.getElementsByClassName('questionCategory');

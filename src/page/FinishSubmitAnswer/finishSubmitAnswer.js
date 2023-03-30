@@ -2,9 +2,10 @@ import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function FinishSubmitAnswer({$target}){
-    new AddCss({
-        href: "./src/page/FinishSubmitAnswer/finishSubmitAnswer.css"
-    });
+    
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
     
     const $readButton = document.createElement('button');
     $readButton.id - 'readAnswersBtn';
@@ -25,10 +26,10 @@ export default function FinishSubmitAnswer({$target}){
 
     this.render = () => {
         
-        $target.appendChild($readButton);
+        $body.appendChild($readButton);
 
-        $target.appendChild($spanDiv);
-        $target.appendChild($shareButton);
+        $body.appendChild($spanDiv);
+        $body.appendChild($shareButton);
 
         
     }

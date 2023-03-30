@@ -1,9 +1,14 @@
 export default function Header({ $target }){
-    const $header = document.createElement("h1");
-    $target.appendChild($header);
+    const $header = document.createElement('div');
+    $header.class = 'header'
+    const $h1 = document.createElement("h1");
+    $h1.id = "title";
+    $h1.textContent = "Ten Quest";
+
+    $header.appendChild($h1);
 
     this.render = () => {
-        $header.textContent = "Ten Quest";
+        $target.appendChild($header);
     }
 
     this.render();

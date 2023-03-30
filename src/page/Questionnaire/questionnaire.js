@@ -4,9 +4,15 @@ import { request } from "../../api.js";
 import { push } from "../../router.js";
 
 export default function Questionnaire({$target, initialState}){
-    
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+
+    const $questionnaireDiv = document.createElement('div');
+    $questionnaireDiv.id = 'questionnaireDiv';
 
     const $questionListDiv = document.createElement('div');
+    $questionListDiv.id = 'questionListDiv';
 
     this.state = initialState;
     let templateId = '';
@@ -42,11 +48,7 @@ export default function Questionnaire({$target, initialState}){
     this.render = () => {
         new Header({
             $target
-        });                    //const questionContent = await request(`/api/v1/questions/content/questionId?value=${questionId}`);
-
-        //$target.appendChild($questionListDiv);
-        
-        console.log(this.state)
+        });                    
         $questionListDiv.innerHTML = `
             <ol>
                 ${this.state.templateDocList.map(({questionId, questionContent }) => 
@@ -65,33 +67,17 @@ export default function Questionnaire({$target, initialState}){
         )
 
         
-        $target.appendChild($label);
-        $target.appendChild($input);
+        $questionnaireDiv.appendChild($label);
+        $questionnaireDiv.appendChild($input);
 
-        /*
-        this.state.templateDocList.map(async ({questionId, templateDocId}) => {
-            const questionContent = await request(`/api/v1/questions/content/questionId?value=${questionId}`);
-            const $li = document.createElement('li');
-            const $label = document.createElement('label');
-            const $p = document.createElement('p');
-            $p.innerText = questionContent.data;
-            const $input = document.createElement('input');
-            $input.setAttribute('data-questionId', questionId);
-            $input.setAttribute('type', 'text');
-            $label.appendChild($p);
-            $li.appendChild($label);
-            $li.appendChild($input);
-            $questionListDiv.appendChild($li);
-            docIdList.push(templateDocId);
-            return
-        })
-*/
-        $target.appendChild($questionListDiv);
+        $questionnaireDiv.appendChild($questionListDiv);
 
-        $target.appendChild($chekcboxIsPublic);
-        $target.appendChild($checkboxLabel);
+        $questionnaireDiv.appendChild($chekcboxIsPublic);
+        $questionnaireDiv.appendChild($checkboxLabel);
 
-        $target.appendChild($submitAnswerBtn);
+        $questionnaireDiv.appendChild($submitAnswerBtn);
+
+        $body.appendChild($questionnaireDiv);
     }
 
     $submitAnswerBtn.addEventListener('click', async () => {

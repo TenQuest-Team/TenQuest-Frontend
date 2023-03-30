@@ -1,7 +1,12 @@
 import { push } from "../../router.js";
 
 export default function ShareTemplatePage({$target}) {
+  const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+  
   const $creationCompleteDiv = document.createElement('div');
+  $creationCompleteDiv.id = 'creationCompleteDiv';
   
   const $shareButton = document.createElement('button');
   $shareButton.innerText = "링크 공유하기";
@@ -13,7 +18,7 @@ export default function ShareTemplatePage({$target}) {
     
     $creationCompleteDiv.appendChild($successMessage);
     $creationCompleteDiv.appendChild($shareButton);
-    $target.appendChild($creationCompleteDiv);
+    $body.appendChild($creationCompleteDiv);
   }
 
   $shareButton.addEventListener('click', () => {

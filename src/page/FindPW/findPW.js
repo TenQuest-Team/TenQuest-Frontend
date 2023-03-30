@@ -6,9 +6,12 @@ export default function FindPW({ $target }) {
         $target 
     });
 
-    new AddCss({
-        href: "./src/page/FindPW/findPW.css"
-    });
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
+
+    const $findPWDiv = document.createElement('div');
+    $findPWDiv.class = 'body';
 
     const $findPWForm = document.createElement("form");
     $target.appendChild($findPWForm);
@@ -27,6 +30,6 @@ export default function FindPW({ $target }) {
             <br>
             <button class="find-form-btn" id="find_btn"> 찾기 </button>
         `
-        $target.appendChild($findPWForm);
+        $findPWDiv.appendChild($findPWForm);
     }
 }

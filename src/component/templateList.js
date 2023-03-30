@@ -10,9 +10,6 @@ export default function TemplateList({
   $templateList.id = 'templateListDiv'
   $target.appendChild($templateList);
 
-  new AddCss({
-    href: "./src/component/templateList.css"
-  });
 
   this.state = initialState;
   this.setState = nextState => {

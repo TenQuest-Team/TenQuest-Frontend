@@ -5,9 +5,9 @@ import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function ViewAnswers({$target, initialState }){
-    new AddCss({
-        href: "./src/page/ViewAnswers/viewAnswers.css"
-    });
+    const $body = document.createElement('div');
+    $body.class = 'body';
+    $target.appendChild = $body;
     
     const $answerListDiv = document.createElement('div');
 
