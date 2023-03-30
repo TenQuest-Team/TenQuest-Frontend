@@ -9,13 +9,12 @@ export default function PresetTemplateListPage({
 }) {
   const $page = document.createElement('div');
 
-  
-
   const presetTemplateList = new TemplateList({
     $target: $page,
     initialState: [],
     type: "PresetTemplateList"
   });
+/*  $target.classList.add('preset-tmp-list');*/
 
   this.setState = async () => {
     const templates = await request(`/api/v1/presets`);
@@ -25,6 +24,7 @@ export default function PresetTemplateListPage({
 
   const $h2 = document.createElement('h2');
   $h2.innerText = '<Preset Template List>';
+  $h2.setAttribute("class", 'preset-title');
 
   const $createOwnTemplate = document.createElement('button');
   $createOwnTemplate.innerText = "create own template";
@@ -34,6 +34,7 @@ export default function PresetTemplateListPage({
     new AddCss({
       href: "./src/page/PresetTemplateList/presetTemplateListPage.css"
     });
+
     new Header({
       $target 
     });
