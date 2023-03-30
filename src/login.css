@@ -28,7 +28,6 @@ body{
   background: #ebecf0;
   text-align: center;
   vertical-align: center;
-  
 }
 
 * {
@@ -68,6 +67,7 @@ body{
   margin: 15px 0;
 }*/
 
+/* 리스트 들 */
 .body {
   background: #ebecf0;
   display: flex;
@@ -75,8 +75,8 @@ body{
     padding: 0 50px;
     height: 600px;
     width:50%;
-    justify-content: center;
-    align-items: center;
+    justify-content: top;
+    align-items: top;
 }
 
 form input {
@@ -173,3 +173,113 @@ span {
 .check-btn{
 }
 */
+/*
+.templateList {
+      display: block;
+  padding: 10px;
+  *//*border-radius: 20px;*//*
+  border: none;
+  outline: none;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 80ms ease-in;
+  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+  margin-bottom: 10px; *//* 각 리스트 요소간의 간격 조절 *//*
+}*/
+
+.templateList {
+  display: block;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.3s ease-in-out;
+
+  margin-bottom: 10px;
+}
+
+.templateList::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #ffffff;
+  opacity: 0.4;
+  transition: all 0.3s ease-in-out;
+}
+
+.templateList:hover::before {
+  width: 100%;
+}
+
+.templateList span {
+  position: relative;
+  z-index: 1;
+}
+
+.createOwnTemplate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  width: 230px;
+  height: 60px;
+  text-align:left;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.createOwnTemplate-btn::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  font-size: 18px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease-in-out;
+}
+
+.createOwnTemplate-btn:hover {
+  width: 300px;
+  justify-content: space-between;
+  background-color: #0062cc;
+}
+
+.createOwnTemplate-btn:hover::after {
+  transform: translateY(-50%) translateX(5px);
+
+.page{
+    display: grid;
+      place-items: center;
+}
+
+.templateListUl {
+ padding: 0px;
+}
+
+
+
+

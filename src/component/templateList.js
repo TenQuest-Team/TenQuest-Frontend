@@ -21,7 +21,7 @@ export default function TemplateList({
     if(type === "TemplateList"){
       console.log(this.state)
       $templateList.innerHTML = `
-        <ul id="templateListUl">
+        <ul class="templateListUl">
           ${this.state.map(template => `
             <li id="${template.templateId}" class="templateList"><p class="templateName">${template.templateName}</p><p class="createdAt">${template.createdAt.split('T')[0]}</p></li>
           `).join('')}
@@ -29,9 +29,9 @@ export default function TemplateList({
       `
     } else if(type === "PresetTemplateList") {
       $templateList.innerHTML = `
-        <ul>
+        <ul class="templateListUl">
           ${this.state.map(template => `
-            <li id="${template.presetId}">${template.presetName}</li>
+            <li id="${template.presetId}" class="templateList">${template.presetName}</li>
           `).join('')}
         </ul>
       `

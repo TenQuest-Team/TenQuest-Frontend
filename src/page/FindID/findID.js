@@ -6,11 +6,11 @@ export default function FindID({ $target }) {
     });
 
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className= 'body';
     $target.appendChild($body);
     
     const $loginDiv = document.createElement('div');
-    $loginDiv.class = 'loginDiv';
+    $loginDiv.className = 'loginDiv';
 
     const $findIDForm = document.createElement("form");
 

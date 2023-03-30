@@ -3,7 +3,7 @@ import { push } from "../../router.js";
 export default function FinishSubmitAnswer({$target}){
     
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
     
     const $readButton = document.createElement('button');
     $readButton.id - 'readAnswersBtn';
