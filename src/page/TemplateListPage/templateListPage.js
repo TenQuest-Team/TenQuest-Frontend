@@ -8,7 +8,7 @@ export default function TemplateListPage({
 }) {
 
   const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
     
   const memberId = sessionStorage.getItem('memberId');
 
@@ -40,10 +40,10 @@ export default function TemplateListPage({
     new Header({
       $target 
     });
-    $body.appendChild($page);
 
     $buttonDiv.appendChild($createTemplate);
     $body.appendChild($buttonDiv);
+    $body.appendChild($page);
     $target.appendChild($body);
 
   }

@@ -3,7 +3,7 @@ export default function Header({ $target }){
     $header.className = 'header'
 
     const $h1 = document.createElement("h1");
-    $h1.id = "title";
+    $h1.className = "title";
     $h1.textContent = "Ten Quest";
 
     $header.appendChild($h1);

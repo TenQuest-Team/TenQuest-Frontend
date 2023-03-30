@@ -2,7 +2,7 @@ import { push } from "../../router.js";
 
 export default function ShareTemplatePage({$target}) {
   const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
   
   const $creationCompleteDiv = document.createElement('div');
   $creationCompleteDiv.id = 'creationCompleteDiv';

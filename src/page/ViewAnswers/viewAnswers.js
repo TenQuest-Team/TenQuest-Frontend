@@ -5,7 +5,7 @@ import { push } from "../../router.js";
 
 export default function ViewAnswers({$target, initialState }){
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
     
     const $answerListDiv = document.createElement('div');
     $answerListDiv.className = 'answerListDiv';
@@ -15,6 +15,7 @@ export default function ViewAnswers({$target, initialState }){
 
     const $answerList = document.createElement('ul');
     $answerListDiv.appendChild($answerList);
+    $answerList.className = 'answerList'
 
     this.setState = async nextState => {
         const replyerDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${nextState}`)

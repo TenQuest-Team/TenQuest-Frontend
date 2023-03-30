@@ -4,7 +4,7 @@ export default function SignUp({ $target }) {
 
 
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
     
     const $signUpDiv = document.createElement('div');
     $signUpDiv.id = 'signUpDiv';

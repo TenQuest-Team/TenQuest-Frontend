@@ -4,7 +4,7 @@ import { push } from "../../router.js";
 
 export default function Questionnaire({$target, initialState}){
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
 
     const $questionnaireDiv = document.createElement('div');
     $questionnaireDiv.id = 'questionnaireDiv';
