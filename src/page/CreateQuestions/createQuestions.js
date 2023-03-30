@@ -6,11 +6,11 @@ import { push } from "../../router.js";
 
 export default function CreateQuestions({ $target, initialState }){
     const $body = document.createElement('div');
-    $body.classNameName = 'body';
+    $body.className = 'body';
     
     const memberId = sessionStorage.getItem('memberId');
     const $categoryListDiv = document.createElement('div');
-    $categoryListDiv.id = "categoryListDiv";
+    $categoryListDiv.class = "categoryListDiv";
 
     const $questionListDiv = document.createElement('div');
     $questionListDiv.id = "questionListDiv";
@@ -20,7 +20,7 @@ export default function CreateQuestions({ $target, initialState }){
     $selectedListDiv.id = "selectedListDiv";
 
     $selectedListDiv.innerHTML = `
-        <p>[Selected Questions]</p>
+        <p id="selectedDivTitle">[Selected Questions]</p>
     `
     const $selectedList = document.createElement('ol');
     $selectedList.id = "selectedList";
@@ -50,6 +50,8 @@ export default function CreateQuestions({ $target, initialState }){
         </div>  
     `;
 
+    $questionListDiv.appendChild($modal);
+    
     this.setState = async () => {
         const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=1&accessId=root`);
 
@@ -87,8 +89,8 @@ export default function CreateQuestions({ $target, initialState }){
             $target: $questionListDiv,
             initialState: this.state
         }).render()
-        $body.appendChild($modal);
-        
+        $category1.style.backgroundColor = '#007bff';
+
         $body.appendChild($categoryListDiv);
         $body.appendChild($questionListDiv);
         $body.appendChild($selectedListDiv);
@@ -144,11 +146,24 @@ export default function CreateQuestions({ $target, initialState }){
         
         
         if(button){
+            if(buttonDataset.categoryid === '1'){
+                $category1.style.backgroundColor = '#007bff';
+                $category2.style.backgroundColor = '#eee';
+                $category3.style.backgroundColor = '#eee';
+            } else if(buttonDataset.categoryid === '2'){
+                $category1.style.backgroundColor = '#eee';
+                $category2.style.backgroundColor = '#007bff';
+                $category3.style.backgroundColor = '#eee';
+            } else if(buttonDataset.categoryid === '3'){
+                $category1.style.backgroundColor = '#eee';
+                $category2.style.backgroundColor = '#eee';
+                $category3.style.backgroundColor = '#007bff';
+            }
 
             const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=${buttonDataset.categoryid}&accessId=root`);
 
             $questionListDiv.innerHTML = "";
-
+            $questionListDiv.appendChild($modal);
             this.state = questions.data;
             new Question({
                 $target: $questionListDiv,
@@ -159,10 +174,14 @@ export default function CreateQuestions({ $target, initialState }){
 
     $createButton.addEventListener('click', async (e) => {
         e.preventDefault();
+        console.log(document.querySelector('.modal'))
+        if(document.querySelector('.modal')){
 
-        document.querySelector('.modal').classList.remove("hidden");
+            document.querySelector('.modal').classList.remove("hidden");
+        }
         
         document.querySelector('.closeBtn').addEventListener('click', () => {
+            console.log('x')
             document.querySelector('.modal').classList.add("hidden");
         })
 
@@ -193,6 +212,7 @@ export default function CreateQuestions({ $target, initialState }){
                 body: JSON.stringify(requestBody)
             });
 
+            console.log(createdPost)
             if(createdPost){
                 push(`/shareTemplate/${createdPost.data.templateDto.templateId}`);
             }

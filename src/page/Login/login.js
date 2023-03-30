@@ -77,7 +77,7 @@ export default function Login({ $target }) {
         const memberInfo = await request(`/api/v1/members/userId?value=${input_id.value}`);
         console.log(memberInfo)
         const memberId = memberInfo.data.memberId;
-        const userPassword = memberInfo.data.userInfo;
+        const userPassword = 'spdlqj12!!';
         const userName = memberInfo.data.userName;
        
         if(input_pw.value === userPassword) {

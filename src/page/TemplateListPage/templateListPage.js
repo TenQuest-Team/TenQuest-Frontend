@@ -13,8 +13,11 @@ export default function TemplateListPage({
   const memberId = sessionStorage.getItem('memberId');
 
   const $page = document.createElement('div');
-  $page.className = 'templateListPage';
+  $page.className = 'page';
 
+  const $h2 = document.createElement('h2');
+  $h2.innerText = 'Template List';
+  $h2.setAttribute("class", 'list-title');
 
   const templateList = new TemplateList({
     $target: $page,
@@ -34,12 +37,13 @@ export default function TemplateListPage({
 
   const $createTemplate = document.createElement('button');
   $createTemplate.innerText = "create template";
-  $createTemplate.setAttribute("id", "createTemplate");
+  $createTemplate.setAttribute("class", "createTemplate-btn");
 
   this.render = async () => {
     new Header({
       $target 
     });
+    $body.appendChild($h2);
 
     $buttonDiv.appendChild($createTemplate);
     $body.appendChild($buttonDiv);

@@ -24,22 +24,27 @@ export default function ViewAnswers({$target, initialState }){
         this.state = replyerDoc.data;
         this.render();
     }
+    const $categoryListDiv = document.createElement('div');
+    $categoryListDiv.class = "categoryListDiv";
 
     const $category1 = document.createElement('button');
     $category1.setAttribute("data-categoryId", "1");
-    $category1.className = "categories";
+    $category1.className = "viewCategories";
     $category1.innerText = 'Answers';
+    $category1.style.backgroundColor = '#007bff';
+
 
     const $category2 = document.createElement('button');
     $category2.setAttribute("data-categoryId", "2");
-    $category2.className = "categories";
+    $category2.className = "viewCategories";
     $category2.innerText = 'Questions';
     
     this.render = () => {
         new Header({$target});
 
-        $target.appendChild($category1);
-        $target.appendChild($category2);
+        $categoryListDiv.appendChild($category1);
+        $categoryListDiv.appendChild($category2);
+        $body.appendChild($categoryListDiv);
 
         console.log(this.state)
         if(sessionStorage.getItem('viewType') === 'answers'){
@@ -99,15 +104,25 @@ export default function ViewAnswers({$target, initialState }){
         const templateDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${sessionStorage.getItem('templateId')}`)
         this.state = templateDoc.data;
         sessionStorage.setItem('viewType', 'answers');
+        $target.innerHTML = '';
+        $category1.style.backgroundColor = '#007bff';
+        $category2.style.backgroundColor = '#eee';
         $answerList.innerHTML = '';
         this.render();  
     })
 
     $category2.addEventListener('click', async () => {
+        console.log(sessionStorage.getItem('templateId'))
         const templateDoc = await request(`/api/v1/templates/template-id?value=${sessionStorage.getItem('templateId')}`)
+        console.log(templateDoc);
         this.state = templateDoc.data;
         sessionStorage.setItem('viewType', 'questions');
+        $category2.style.backgroundColor = '#007bff';
+        $category1.style.backgroundColor = '#eee';
+        document.getElementsByClassName('header')[0].innerHTML = '';
+        $target.innerHTML = '';
         $answerList.innerHTML = '';
+
         this.render();    
     })
 }

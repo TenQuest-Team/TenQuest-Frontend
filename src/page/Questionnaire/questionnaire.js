@@ -10,7 +10,7 @@ export default function Questionnaire({$target, initialState}){
     $questionnaireDiv.id = 'questionnaireDiv';
 
     const $questionListDiv = document.createElement('div');
-    $questionListDiv.id = 'questionListDiv';
+    $questionListDiv.id = 'questionnaire_questionListDiv';
 
     this.state = initialState;
     let templateId = '';

@@ -18,6 +18,7 @@ export default function ViewAnswersByAnswer({$target, initialState }){
 
     const $answerList = document.createElement('ul');
     $answerListDiv.appendChild($answerList);
+    $answerList.style.listStyle = 'none'
 
     let questionContent = '';
     const questionContentList = [];
@@ -46,8 +47,8 @@ export default function ViewAnswersByAnswer({$target, initialState }){
         });
     
         console.log(questionContentList)
-        $h2.innerText = sessionStorage.getItem('replyerName');
-        $target.appendChild($h2); 
+        $h2.innerText = `${sessionStorage.getItem('replyerName')} 님의 답변`;
+        $replyerNameDiv.appendChild($h2); 
            
         
         this.state.map( ({answerContent}) => {
