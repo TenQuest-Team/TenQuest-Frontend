@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="fix conflict">
+    <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="CSS 계정 관련 html button 수정 - @songarden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FindID/findID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindID/findID.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FindPW/findPW.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindPW/findPW.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FindPW/findPW.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindPW/findPW.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/Login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Login/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/Login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Login/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/presetTemplateListPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/presetTemplateListPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/SignUp/signUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignUp/signUp.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/SignUp/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignUp/signUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TemplateListPage/templateListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TemplateListPage/templateListPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,12 +86,20 @@
       <option name="project" value="LOCAL" />
       <updated>1680027205339</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CSS 계정 관련 html button 수정 - @songarden">
+      <created>1680078091911</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680078091911</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fix conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix conflict" />
+    <MESSAGE value="CSS 계정 관련 html button 수정 - @songarden" />
+    <option name="LAST_COMMIT_MESSAGE" value="CSS 계정 관련 html button 수정 - @songarden" />
   </component>
 </project>

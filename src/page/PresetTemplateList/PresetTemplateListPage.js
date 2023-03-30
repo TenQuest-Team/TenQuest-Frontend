@@ -34,8 +34,13 @@ export default function PresetTemplateListPage({
   const $createOwnTemplate = document.createElement('button');
   $createOwnTemplate.innerText = "create own template";
   $createOwnTemplate.setAttribute("id", "createOwnTemplate");
-  //$createOwnTemplate.classList.add("create-tmp-btn");
+//  $createOwnTemplate.classList.add("create-tmp-btn");
+
+  const $link = document.createElement('link');
+  $link.setAttribute('rel', 'stylesheet');
+  $link.setAttribute('href', './src/page/PresetTemplateListPage/presetTemplateListPage.css');
   this.render = async () => {
+//    document.head.appendChild($link);
     new Header({
       $target 
     });

@@ -20,21 +20,21 @@ export default function Login({ $target }) {
         <form>
             <div class="login-container">
             <label for="user_id"></label>
-            <input type = "text" id="user_id" name = "user_id" placeholder="ID">
+            <input type = "text" class ="login-input" id="user_id" name = "user_id" placeholder="ID">
             <br>
             <label for="user_pw"></label>
-            <input type = "text" id="user_pw" name = "user_pw" placeholder="Password">
+            <input type = "text" class ="login-input" id="user_pw" name = "user_pw" placeholder="Password">
             <br>
             <div>
             <button class = "find-form-btn" id="find_id_btn"> 아이디 찾기 </button>
             <button class = "find-form-btn" id="find_pw_btn"> 비밀번호 찾기 </button>
             </div>
             <div>
-            <button class = "form-btn" id="login_btn"> 로그인 </button>
+            <button class = "login-btn" id="login_btn"> 로그인 </button>
             </div>
             <div>
                 <span>use your account</span>
-                <button class = "join-form-btn" id="sign_up_btn"> 회원가입 </button>
+                <button class = "join-form-btn" id="submit_btn"> 회원가입 </button>
             </div>
         </form>
         `
