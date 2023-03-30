@@ -6,7 +6,7 @@ import { push } from "../../router.js";
 
 export default function CreateQuestions({ $target, initialState }){
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.classNameName = 'body';
     
     const memberId = sessionStorage.getItem('memberId');
     const $categoryListDiv = document.createElement('div');

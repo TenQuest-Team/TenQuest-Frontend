@@ -8,10 +8,11 @@ export default function PresetTemplateListPage({
 }) {
 
   const $body = document.createElement('div');
-    $body.class = 'body';
+  $body.className = 'body';
     
   const $page = document.createElement('div');
   $page.id = 'presetTemplateListDiv';
+  $page.className = 'page';
   
   const $h2 = document.createElement('h2');
   $h2.innerText = '<Preset Template List>';
@@ -19,7 +20,7 @@ export default function PresetTemplateListPage({
 
   const $createOwnTemplate = document.createElement('button');
   $createOwnTemplate.innerText = "create own template";
-  $createOwnTemplate.setAttribute("class", "createOwnTemplate");
+  $createOwnTemplate.setAttribute("class", "createOwnTemplate-btn");
   $page.appendChild($h2);
     $page.appendChild($createOwnTemplate);
 

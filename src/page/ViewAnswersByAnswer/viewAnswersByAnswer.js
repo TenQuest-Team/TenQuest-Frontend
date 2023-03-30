@@ -5,7 +5,7 @@ import { push } from "../../router.js";
 
 export default function ViewAnswersByAnswer({$target, initialState }){
     const $body = document.createElement('div');
-    $body.class = 'body';
+    $body.className = 'body';
     
     const $page = document.createElement('div');
     $page.id = 'viewAnswersByAnswerPage';

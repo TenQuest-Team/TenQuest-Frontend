@@ -6,12 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="CSS 계정 관련 html button 수정 - @songarden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/templateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/templateList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/CreateQuestions/createQuestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/CreateQuestions/createQuestions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/FindID/findID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindID/findID.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/FinishSubmitAnswer/finishSubmitAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FinishSubmitAnswer/finishSubmitAnswer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/presetTemplateListPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/presetTemplateListPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignUp/signUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignUp/signUp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignUp/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignUp/signUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/ViewAnswers/viewAnswers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ViewAnswers/viewAnswers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/ViewAnswersByAnswer/viewAnswersByAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ViewAnswersByAnswer/viewAnswersByAnswer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/ViewAnswersByQuestion/viewAnswersByQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ViewAnswersByQuestion/viewAnswersByQuestion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
