@@ -1,5 +1,4 @@
 import { request } from "../api.js";
-import AddCss from "./addCss.js";
 import { push } from "../router.js";
 
 export default function Category({ $target, initialState }){

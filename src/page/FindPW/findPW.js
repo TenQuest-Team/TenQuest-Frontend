@@ -1,22 +1,21 @@
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function FindPW({ $target }) {
-    new Header({
-        $target 
-    });
 
     const $body = document.createElement('div');
-    $body.class = 'body';
-    $target.appendChild = $body;
+    $body.className = 'body';
 
     const $findPWDiv = document.createElement('div');
     $findPWDiv.class = 'body';
 
     const $findPWForm = document.createElement("form");
-    $target.appendChild($findPWForm);
+    $findPWDiv.appendChild($findPWForm);
 
     this.render = () => {
+        new Header({
+            $target 
+        });
+
         $findPWForm.innerHTML = `
             <p>[비밀번호 찾기]</p>
             <label for="user_name">아이디</label>
@@ -30,6 +29,8 @@ export default function FindPW({ $target }) {
             <br>
             <button class="find-form-btn" id="find_btn"> 찾기 </button>
         `
-        $findPWDiv.appendChild($findPWForm);
+        $body.appendChild($findPWDiv);
+        $target.appendChild($body);
+
     }
 }

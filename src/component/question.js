@@ -1,13 +1,7 @@
-import AddCss from "./addCss.js";
-
 export default function Question({ $target, initialState }){
     const $questionList = document.createElement('ul');
     $questionList.setAttribute("id", "questions");
     $target.appendChild($questionList);
-
-    new AddCss({
-        href: "./src/component/question.css"
-    });
     
     this.state = initialState;
 

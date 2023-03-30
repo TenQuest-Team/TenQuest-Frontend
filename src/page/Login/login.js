@@ -1,12 +1,10 @@
 import { request } from "../../api.js";
 import { push } from "../../router.js";
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function Login({ $target }) {
     const $body = document.createElement('div');
-    $body.class = 'body';
-    $target.appendChild = $body;
+    $body.className = 'body';
     
     const $loginForm = document.createElement("form");
     $loginForm.setAttribute('method', 'post');
@@ -41,17 +39,16 @@ export default function Login({ $target }) {
             </div>
         </form>
         `
-        $target.appendChild($loginForm);
-        document.querySelector('#login_btn').addEventListener('click', checkLogin);
+        $body.appendChild($loginForm);
+
+        $target.appendChild($body);
+        const $loginButton = document.querySelector('#login_btn');
+        if($loginButton){
+            $loginButton.addEventListener('click', checkLogin);
+        }
 
     }
-
-    //this.render();
-
-    const $loginButton = document.querySelector('#login_btn');
-    if($loginButton){
-        $loginButton.addEventListener('click', checkLogin);
-    }
+    
 
     //$2a$10$c1JRvr9js1IBDdmfQNrwDOpSVs4zYwvmC1qCb6peigEPIL3MbFjHe
     async function checkLogin(e) {

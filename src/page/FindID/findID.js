@@ -1,5 +1,4 @@
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function FindID({ $target }) {
     new Header({
@@ -8,7 +7,7 @@ export default function FindID({ $target }) {
 
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
+    $target.appendChild($body);
     
     const $loginDiv = document.createElement('div');
     $loginDiv.class = 'loginDiv';

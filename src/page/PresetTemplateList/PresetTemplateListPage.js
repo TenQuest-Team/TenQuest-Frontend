@@ -2,7 +2,6 @@ import TemplateList from "../../component/templateList.js";
 import { push } from "../../router.js";
 import { request } from "../../api.js";
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function PresetTemplateListPage({
   $target
@@ -10,10 +9,19 @@ export default function PresetTemplateListPage({
 
   const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
   const $page = document.createElement('div');
   $page.id = 'presetTemplateListDiv';
+  
+  const $h2 = document.createElement('h2');
+  $h2.innerText = '<Preset Template List>';
+  $h2.setAttribute("class", 'preset-title');
+
+  const $createOwnTemplate = document.createElement('button');
+  $createOwnTemplate.innerText = "create own template";
+  $createOwnTemplate.setAttribute("class", "createOwnTemplate");
+  $page.appendChild($h2);
+    $page.appendChild($createOwnTemplate);
 
   const presetTemplateList = new TemplateList({
     $target: $page,
@@ -28,21 +36,15 @@ export default function PresetTemplateListPage({
     this.render();
   }
 
-  const $h2 = document.createElement('h2');
-  $h2.innerText = '<Preset Template List>';
-  $h2.setAttribute("class", 'preset-title');
-
-  const $createOwnTemplate = document.createElement('button');
-  $createOwnTemplate.innerText = "create own template";
-  $createOwnTemplate.setAttribute("class", "createOwnTemplate");
-
+  
   this.render = async () => {
     new Header({
       $target 
     });
-    $page.appendChild($h2);
-    $page.appendChild($createOwnTemplate);
+    
     $body.appendChild($page);
+    $target.appendChild($body);
+
   }
 
   $createOwnTemplate.addEventListener('click', (e) => {

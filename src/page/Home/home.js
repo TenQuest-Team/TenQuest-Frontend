@@ -1,10 +1,7 @@
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function Home({ $target, initialState }) {
-    new AddCss({
-        href: "./src/page/Home/home.css"
-    });
+
 
     new Header({
         $target

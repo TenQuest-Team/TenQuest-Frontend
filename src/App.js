@@ -4,9 +4,6 @@ import SignUp from "./page/SignUp/signUp.js";
 import FindID from "./page/FindID/findID.js";
 import FindPW from "./page/FindPW/findPW.js";
 import Questionnaire from "./page/Questionnaire/questionnaire.js";
-import Header from "./component/header.js";
-import Home from "./page/Home/home.js";
-import Category from "./component/category.js";
 import CreateQuestions from "./page/CreateQuestions/createQuestions.js";
 import FinishSubmitAnswer from "./page/FinishSubmitAnswer/finishSubmitAnswer.js";
 import ViewAnswers from "./page/ViewAnswers/viewAnswers.js";
@@ -59,7 +56,8 @@ export default function App({ $target }){
         else */
         if(pathname === '/') {
             loginPage.render();
-        } else if(pathname.indexOf('/findID') > -1){
+        } 
+        else if(pathname.indexOf('/findID') > -1){
             findIDPage.render();
         } else if(pathname.indexOf('/findPW') > -1) {
             findPWPage.render();

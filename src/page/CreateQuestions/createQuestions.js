@@ -2,13 +2,11 @@ import Header from "../../component/header.js";
 import Category from "../../component/category.js";
 import { request } from "../../api.js";
 import Question from "../../component/question.js";
-import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function CreateQuestions({ $target, initialState }){
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
     const memberId = sessionStorage.getItem('memberId');
     const $categoryListDiv = document.createElement('div');
@@ -59,7 +57,6 @@ export default function CreateQuestions({ $target, initialState }){
         this.render();
     }
     
-    const header = new Header({ $target });
     
     const $category1 = document.createElement('button');
     $category1.setAttribute("data-categoryId", "1");
@@ -98,6 +95,7 @@ export default function CreateQuestions({ $target, initialState }){
         $body.appendChild($createButton);
 
         $target.appendChild($body);
+
     } 
 
     const category = document.getElementsByClassName('questionCategory');

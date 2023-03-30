@@ -1,14 +1,10 @@
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function SignUp({ $target }) {
-    new Header({
-        $target 
-    });
+
 
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
     const $signUpDiv = document.createElement('div');
     $signUpDiv.id = 'signUpDiv';
@@ -17,6 +13,10 @@ export default function SignUp({ $target }) {
     $signUpForm.id = "signUpForm";
 
     this.render = () => {
+        new Header({
+            $target 
+        });
+        
         $signUpForm.innerHTML = `
             <p>[회원가입]</p>
             <label for="user_id">아이디</label>
@@ -36,5 +36,7 @@ export default function SignUp({ $target }) {
         `
         $signUpDiv.appendChild($signUpForm);
         $body.appendChild($signUpDiv);
+        $target.appendChild($body);
+
     }
 }

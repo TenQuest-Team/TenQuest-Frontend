@@ -1,15 +1,14 @@
 import Header from "../../component/header.js";
 import Category from "../../component/category.js";
 import { request } from "../../api.js";
-import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function ViewAnswers({$target, initialState }){
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
     const $answerListDiv = document.createElement('div');
+    $answerListDiv.className = 'answerListDiv';
 
     const memberId = sessionStorage.getItem("memberId");
     this.state = initialState;
@@ -36,7 +35,7 @@ export default function ViewAnswers({$target, initialState }){
     $category2.innerText = 'Questions';
     
     this.render = () => {
-        //new Header({$target});
+        new Header({$target});
 
         $target.appendChild($category1);
         $target.appendChild($category2);
@@ -62,7 +61,8 @@ export default function ViewAnswers({$target, initialState }){
             })
         }
 
-        $target.appendChild($answerListDiv);
+        $body.appendChild($answerListDiv);
+        $target.appendChild($body);
     }
 
     /*

@@ -2,7 +2,6 @@ import TemplateList from "../../component/templateList.js";
 import { push } from "../../router.js";
 import { request } from "../../api.js";
 import Header from "../../component/header.js";
-import AddCss from "../../component/addCss.js";
 
 export default function TemplateListPage({
   $target
@@ -10,10 +9,11 @@ export default function TemplateListPage({
 
   const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
   const memberId = sessionStorage.getItem('memberId');
+
   const $page = document.createElement('div');
+  $page.className = 'templateListPage';
 
 
   const templateList = new TemplateList({
@@ -29,6 +29,9 @@ export default function TemplateListPage({
     this.render();
   }
 
+  const $buttonDiv = document.createElement('div');
+  $buttonDiv.className = 'createTemplateBtnDiv';
+
   const $createTemplate = document.createElement('button');
   $createTemplate.innerText = "create template";
   $createTemplate.setAttribute("id", "createTemplate");
@@ -37,9 +40,12 @@ export default function TemplateListPage({
     new Header({
       $target 
     });
-    $target.appendChild($page);
+    $body.appendChild($page);
 
-    $target.appendChild($createTemplate);
+    $buttonDiv.appendChild($createTemplate);
+    $body.appendChild($buttonDiv);
+    $target.appendChild($body);
+
   }
   
   $createTemplate.addEventListener('click', (e) => {

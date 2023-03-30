@@ -1,4 +1,3 @@
-import AddCss from "../../component/addCss.js";
 import Header from "../../component/header.js";
 import { request } from "../../api.js";
 import { push } from "../../router.js";
@@ -6,7 +5,6 @@ import { push } from "../../router.js";
 export default function Questionnaire({$target, initialState}){
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
 
     const $questionnaireDiv = document.createElement('div');
     $questionnaireDiv.id = 'questionnaireDiv';
@@ -78,6 +76,8 @@ export default function Questionnaire({$target, initialState}){
         $questionnaireDiv.appendChild($submitAnswerBtn);
 
         $body.appendChild($questionnaireDiv);
+        $target.appendChild($body);
+
     }
 
     $submitAnswerBtn.addEventListener('click', async () => {
@@ -97,6 +97,7 @@ export default function Questionnaire({$target, initialState}){
                 "answerContentList": answerContentList,
                 "isPublic": !(document.getElementById('replyer_isPublic').checked)
             }
+            //!(document.getElementById('replyer_isPublic').checked)
             console.log(JSON.stringify(requestBody))
             await request('/api/v1/answers', {
                 method: 'POST',

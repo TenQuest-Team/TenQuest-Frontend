@@ -1,15 +1,17 @@
 import Header from "../../component/header.js";
 import Category from "../../component/category.js";
 import { request } from "../../api.js";
-import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function ViewAnswersByAnswer({$target, initialState }){
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
+    const $page = document.createElement('div');
+    $page.id = 'viewAnswersByAnswerPage';
+
     const $answerListDiv = document.createElement('div');
+    $answerListDiv.className = 'answerListDiv';
 
     const memberId = sessionStorage.getItem("memberId");
     this.state = initialState;
@@ -33,6 +35,9 @@ export default function ViewAnswersByAnswer({$target, initialState }){
         this.render();
     }
 
+    const $replyerNameDiv = document.createElement('div');
+    $replyerNameDiv.className = 'viewDocTitleDiv';
+
     const $h2 = document.createElement('h2');
     let count = 0;
     this.render = () => {
@@ -54,8 +59,12 @@ export default function ViewAnswersByAnswer({$target, initialState }){
             $answerList.appendChild($li);
             return
         })
-        
-        console.log($answerList)
-        $target.appendChild($answerListDiv);
+        $page.appendChild($replyerNameDiv);
+
+        $page.appendChild($answerListDiv);
+        $body.appendChild($page);
+
+        $target.appendChild($body);
+
     }
 }

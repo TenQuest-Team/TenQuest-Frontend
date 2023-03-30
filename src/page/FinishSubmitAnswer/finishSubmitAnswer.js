@@ -1,11 +1,9 @@
-import AddCss from "../../component/addCss.js";
 import { push } from "../../router.js";
 
 export default function FinishSubmitAnswer({$target}){
     
     const $body = document.createElement('div');
     $body.class = 'body';
-    $target.appendChild = $body;
     
     const $readButton = document.createElement('button');
     $readButton.id - 'readAnswersBtn';
@@ -30,6 +28,7 @@ export default function FinishSubmitAnswer({$target}){
 
         $body.appendChild($spanDiv);
         $body.appendChild($shareButton);
+        $target.appendChild($body);
 
         
     }
