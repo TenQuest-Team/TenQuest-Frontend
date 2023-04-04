@@ -21,6 +21,7 @@ export default function CreateQuestions({ $target, initialState }){
 
     $selectedListDiv.innerHTML = `
         <p id="selectedDivTitle">[Selected Questions]</p>
+        <button id="create-private-question">+</button>
     `
     const $selectedList = document.createElement('ol');
     $selectedList.id = "selectedList";
