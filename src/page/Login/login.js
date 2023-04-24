@@ -43,8 +43,7 @@ export default function Login({ $target }) {
             <button class = "login-btn" id="login_btn"> 로그인 </button>
             <button class = "find-form-btn" id="find_id_btn"> ID 찾기 </button>
             <button class = "find-form-btn" id="find_pw_btn"> PW 찾기 </button>
-            
-                <button class = "join-form-btn" id="submit_btn"> 회원가입 </button>
+            <button class = "join-form-btn" id="submit_btn"> 회원가입 </button>
         `
         //<span>use your account</span>
         $loginDiv.appendChild($loginForm);
@@ -55,38 +54,48 @@ export default function Login({ $target }) {
         if($loginButton){
             $loginButton.addEventListener('click', checkLogin);
         }
-
+        const $signUpButton = document.querySelector('#submit_btn');
+        if($signUpButton){
+            $signUpButton.addEventListener('click', route_signUpPage)
+        }
     }
     
 
-    //$2a$10$c1JRvr9js1IBDdmfQNrwDOpSVs4zYwvmC1qCb6peigEPIL3MbFjHe
-    async function checkLogin(e) {
-        e.preventDefault();
-        const input_id = document.querySelector('#user_id');
-        const input_pw = document.querySelector('#user_pw');
-        /*
-        const memberInfo = await request(`/api/v1/login`, {
-            method: 'POST',
-            body: JSON.stringify({
-                username: input_id.value,
-                password: input_pw.value
-            })
-        });
-        */
-
-        const memberInfo = await request(`/api/v1/members/userId?value=${input_id.value}`);
-        console.log(memberInfo)
-        const memberId = memberInfo.data.memberId;
-        const userPassword = 'spdlqj12!!';
-        const userName = memberInfo.data.userName;
-       
-        if(input_pw.value === userPassword) {
-            alert(userName + "님 환영합니다.");
-            sessionStorage.setItem('memberId', memberId);
-            push('/templates');
-        } else {
-            console.log("umm")
-        }
-        
-    }
+    
 }
+
+//$2a$10$c1JRvr9js1IBDdmfQNrwDOpSVs4zYwvmC1qCb6peigEPIL3MbFjHe
+async function checkLogin(e) {
+    e.preventDefault();
+    const input_id = document.querySelector('#user_id');
+    const input_pw = document.querySelector('#user_pw');
+    /*
+    const memberInfo = await request(`/api/v1/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+            username: input_id.value,
+            password: input_pw.value
+        })
+    });
+    */
+
+    const memberInfo = await request(`/api/v1/members/userId?value=${input_id.value}`);
+    console.log(memberInfo)
+    const memberId = memberInfo.data.memberId;
+    const userPassword = 'spdlqj12!!';
+    const userName = memberInfo.data.userName;
+   
+    if(input_pw.value === userPassword) {
+        alert(userName + "님 환영합니다.");
+        sessionStorage.setItem('memberId', memberId);
+        push('/templates');
+    } else {
+        console.log("umm")
+    }
+    
+}
+
+function route_signUpPage(e) {
+    e.preventDefault();
+    push('/signUp');
+};
