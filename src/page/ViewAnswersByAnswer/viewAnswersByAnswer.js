@@ -50,21 +50,30 @@ export default function ViewAnswersByAnswer({$target, initialState }){
         $h2.innerText = `${sessionStorage.getItem('replyerName')} 님의 답변`;
         $replyerNameDiv.appendChild($h2); 
            
-        
-        this.state.map( ({answerContent}) => {
-            const $li = document.createElement('li');
-            $li.innerText = `
-                Q. ${questionContentList[count++]}
-                A. ${answerContent}
-            `;
-            $answerList.appendChild($li);
-            return
-        })
-        $page.appendChild($replyerNameDiv);
 
+        for(let i = 0; i < this.state.length; i++) {
+          const { answerContent, questionContent } = this.state[i];
+
+          const $questionBox = document.createElement('div');
+          $questionBox.classList.add('question-box');
+          const $question = document.createElement('div');
+          $question.classList.add('question');
+          $question.innerText = `Q. ${questionContentList[i]}`;
+          const $answerBox = document.createElement('div');
+          $answerBox.classList.add('answer-box');
+          const $answer = document.createElement('div');
+          $answer.classList.add('answer');
+          $answer.innerText = `A. ${answerContent}`;
+
+          $answerBox.appendChild($answer);
+          $questionBox.appendChild($question);
+          $questionBox.appendChild($answerBox);
+          $answerList.appendChild($questionBox);
+        }
+
+        $page.appendChild($replyerNameDiv);
         $page.appendChild($answerListDiv);
         $body.appendChild($page);
-
         $target.appendChild($body);
 
     }
