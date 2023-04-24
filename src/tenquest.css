@@ -15,7 +15,7 @@ body{
 
 .app{
   height: 100%;
-  width: 800px;
+  width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,7 @@ body{
     padding: 0 50px;
     height: 200px;
     width: 100%;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 
@@ -386,17 +386,20 @@ body{
 
 /* view answer page */
 .viewCategories {
-  font-size:small;
-
+  font-size: small;
   background: #eee;
   border: 0;
   outline: none;
   border-radius: 20px;
   box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
-
   padding: 5px 15px;
   margin: 5px;
-  width: 40%;
+  width: 45%; /* 버튼 너비를 45%로 설정하여 두 버튼이 한 줄에 들어가도록 함 */
   cursor: pointer;
   display: inline-block;
+}
+
+
+.viewCategories:last-child {
+  margin-left: 5%; /* 두 번째 버튼 왼쪽 마진을 5%로 설정하여 버튼 간격을 조정함 */
 }
