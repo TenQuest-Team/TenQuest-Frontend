@@ -20,7 +20,7 @@ export default function Header({ $target }){
     this.render();
 
     $beforeButton.addEventListener('click', () =>
-        history.back()
+        history.back(1)
     )
 }
 

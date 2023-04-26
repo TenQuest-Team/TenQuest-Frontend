@@ -34,22 +34,28 @@ export default function CreateQuestions({ $target, initialState }){
     const $modal = document.createElement('div');
     $modal.className = "modal hidden";
 
-    $modal.innerHTML = `
-        <div class="bg"></div>
-        <div class="modalBox">
-            <p><strong>Create Your Own Question!</strong></p>
-            <label for="newTemplateTitle"><p>템플릿 제목을 입력해주세요.</p></label>
-            <input id="newTemplateTitle" type="text">
-            <br>
-            <br>
-            <input id="checkIsPublic" type="checkbox">
-            <label for="checkIsPublic">템플릿 비공개</label>
-            <br>
-            <br>
-            <button class="createSubmitBtn">템플릿 생성하기</button>
-            <button class="closeBtn">✖</button>
-        </div>  
-    `;
+    const createTemplateModal = `
+        <p><strong>Create Your Own Template!</strong></p>
+        <label for="newTemplateTitle"><p>템플릿 제목을 입력해주세요.</p></label>
+        <input id="newTemplateTitle" type="text">
+        <br>
+        <br>
+        <input id="checkIsPublic" type="checkbox">
+        <label for="checkIsPublic">템플릿 비공개</label>
+        <br>
+        <br>
+        <button class="createSubmitBtn">템플릿 생성하기</button>
+        <button class="closeBtn">✖</button>
+    `
+
+    const createPrivateQuestionModal = `
+        <p><strong>Create Your Own Question!</strong></p>
+        <input class="newPrivateQuestion" type="text" placeholder="질문을 작성해주세요.">
+        <br>
+        <br>
+        <button class="createQuestionBtn">질문 생성하기</button>
+        <button class="closeBtn">✖</button>
+    `
 
     $questionListDiv.appendChild($modal);
     
@@ -117,7 +123,7 @@ export default function CreateQuestions({ $target, initialState }){
                 $li.innerHTML = `${$input.value} <button class="deleteQuestion">X</button>
                 `;
                 $selectedList.appendChild($li) 
-                console.log($li  )
+                console.log($li)
             } else{
                 const element = $selectedList.querySelector(`li[id="${$input.id}"]`);
                 $selectedList.removeChild(element);
@@ -126,16 +132,57 @@ export default function CreateQuestions({ $target, initialState }){
         }
     });
 
+    let privateQuestionArr = [];
+    let privateQuestionCount = 1;
     $selectedListDiv.addEventListener('click', e => {
         e.preventDefault();
 
-        const $button = e.target.closest('.deleteQuestion');
+        const $deletebutton = e.target.closest('.deleteQuestion');
+        const $clickedButton = e.target;
 
-        if($button){
-            const deleteQuestionId = $button.parentNode.id;
+        if($deletebutton){
+            console.log($deletebutton.parentNode)
+            const deleteQuestionId = $deletebutton.parentNode.id;
+            const deleteQuestionClass = $deletebutton.parentNode.className;
             const element = $selectedList.querySelector(`li[id="${deleteQuestionId}"]`);
             $selectedList.removeChild(element);
-            $questionListDiv.querySelector(`input[id="${deleteQuestionId}"]`).checked = false;
+            if(deleteQuestionClass === "selectedQuestion") {
+                $questionListDiv.querySelector(`input[id="${deleteQuestionId}"]`).checked = false;
+            }
+        }
+
+        if($clickedButton.id === "create-private-question") {
+            $modal.innerHTML = `
+                <div class="bg"></div>
+                <div class="modalBox">
+                    ${createPrivateQuestionModal}
+                </div>  
+            `;
+
+            if(document.querySelector('.modal')){
+
+                document.querySelector('.modal').classList.remove("hidden");
+            }
+            
+            document.querySelector('.closeBtn').addEventListener('click', () => {
+                console.log('x')
+                document.querySelector('.modal').classList.add("hidden");
+            });
+
+            const $createQuestionBtn = $modal.querySelector('.createQuestionBtn');
+            const $inputPrivateQuestion = $modal.querySelector('.newPrivateQuestion');
+            $inputPrivateQuestion.focus();
+
+            $createQuestionBtn.addEventListener('click', () => {
+                const $li = document.createElement('li');
+                $li.setAttribute("class", "privateQuestions");
+                $li.id = `privateQuestion${privateQuestionCount++}`;
+                $li.innerHTML = `${$inputPrivateQuestion.value} <button class="deleteQuestion">X</button>
+                `;
+                $selectedList.appendChild($li);
+
+                document.querySelector('.modal').classList.add("hidden");
+            })
         }
     });
 
@@ -174,8 +221,21 @@ export default function CreateQuestions({ $target, initialState }){
     });
 
     $createButton.addEventListener('click', async (e) => {
+        $modal.innerHTML = `
+            <div class="bg"></div>
+            <div class="modalBox">
+                ${createTemplateModal}
+            </div>  
+        `;
         e.preventDefault();
-        console.log(document.querySelector('.modal'))
+
+        const soso = $selectedList.querySelectorAll('.privateQuestions');
+        soso.forEach(element => {
+            privateQuestionArr.push({
+                questionContent: element.innerText.split(" ")[0],
+                questionCreatedBy: memberId
+            })
+        })
         if(document.querySelector('.modal')){
 
             document.querySelector('.modal').classList.remove("hidden");
@@ -218,5 +278,5 @@ export default function CreateQuestions({ $target, initialState }){
                 push(`/shareTemplate/${createdPost.data.templateDto.templateId}`);
             }
         })
-    })
+    })    
 }
