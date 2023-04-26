@@ -69,8 +69,6 @@ async function checkLogin(e) {
     const input_id = document.querySelector('#user_id');
     const input_pw = document.querySelector('#user_pw');
     
-    console.log(input_id.value);
-    console.log(input_pw.value);
     const loginRes = await request(`/api/v1/login`, {
         method: 'POST',
         headers: {
@@ -82,7 +80,7 @@ async function checkLogin(e) {
         })
     });
 
-    const { message , memberId, userName } = loginRes.data;
+    const { message , memberId, userId , userName } = loginRes.data;
 
     if(loginRes.code === "200") {
         alert(userName + "님 환영합니다.");
@@ -93,7 +91,7 @@ async function checkLogin(e) {
     }
     
 }
-
+ 
 function route_signUpPage(e) {
     e.preventDefault();
     push('/signUp');
