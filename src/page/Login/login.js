@@ -24,7 +24,6 @@ export default function Login({ $target }) {
     $loginForm.setAttribute('method', 'post');
     $loginForm.className = 'loginForm';
 
-
     this.render = () => {
         
         /*
@@ -69,29 +68,33 @@ async function checkLogin(e) {
     e.preventDefault();
     const input_id = document.querySelector('#user_id');
     const input_pw = document.querySelector('#user_pw');
-    /*
+    
+    console.log(input_id.value);
+    console.log(input_pw.value);
     const memberInfo = await request(`/api/v1/login`, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             username: input_id.value,
             password: input_pw.value
         })
     });
-    */
-
-    const memberInfo = await request(`/api/v1/members/userId?value=${input_id.value}`);
     console.log(memberInfo)
-    const memberId = memberInfo.data.memberId;
-    const userPassword = 'spdlqj12!!';
-    const userName = memberInfo.data.userName;
+    // const memberInfo = await request(`/api/v1/members/userId?value=${input_id.value}`);
+    // console.log(memberInfo)
+    // const memberId = memberInfo.data.memberId;
+    // const userPassword = 'spdlqj12!!';
+    // const userName = memberInfo.data.userName;
    
-    if(input_pw.value === userPassword) {
-        alert(userName + "님 환영합니다.");
-        sessionStorage.setItem('memberId', memberId);
-        push('/templates');
-    } else {
-        console.log("umm")
-    }
+    // if(input_pw.value === userPassword) {
+    //     alert(userName + "님 환영합니다.");
+    //     sessionStorage.setItem('memberId', memberId);
+    //     push('/templates');
+    // } else {
+    //     console.log("umm")
+    // }
     
 }
 

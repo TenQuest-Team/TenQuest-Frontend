@@ -192,17 +192,17 @@ export default function CreateQuestions({ $target, initialState }){
             const selectedQuestionsArray = [];
             for(let i=0; i<selectedQuestions.length; i++){
                 selectedQuestionsArray.push({
-                    "questionOrder": (i+1),
-                    "questionId": selectedQuestions[i].id
+                    questionOrder: (i+1),
+                    questionId: selectedQuestions[i].id
                 });
             }
-            
+            console.log(selectedQuestionsArray)
             const requestBody = {
-                "templateDto": {
-                    "templateName": document.querySelector('#newTemplateTitle').value,
-                    "isPublic": !(document.querySelector('#checkIsPublic').checked)
+                templateDto: {
+                    templateName: document.querySelector('#newTemplateTitle').value,
+                    isPublic: !(document.querySelector('#checkIsPublic').checked)
                 },
-                "templateDocList": selectedQuestionsArray
+                templateDocList: selectedQuestionsArray
             }   
             
             const createdPost = await request(`/api/v1/templates/${memberId}`, {

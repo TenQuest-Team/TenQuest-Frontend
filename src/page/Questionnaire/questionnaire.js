@@ -18,6 +18,7 @@ export default function Questionnaire({$target, initialState}){
         templateId = nextState;
         const questions = await request(`/api/v1/templates/template-id?value=${nextState}`);
         this.state = questions.data;
+        console.log(this.state)
         this.render();
     }
 
@@ -46,7 +47,11 @@ export default function Questionnaire({$target, initialState}){
     this.render = () => {
         new Header({
             $target
-        });                    
+        });
+        
+        const $templateOwner = document.createElement('p');
+        $templateOwner.innerText = `${this.state.ownerName} 님의 질문지`;
+
         $questionListDiv.innerHTML = `
             <ol>
                 ${this.state.templateDocList.map(({questionId, questionContent }) => 
@@ -75,9 +80,9 @@ export default function Questionnaire({$target, initialState}){
 
         $questionnaireDiv.appendChild($submitAnswerBtn);
 
+        $body.appendChild($templateOwner);
         $body.appendChild($questionnaireDiv);
         $target.appendChild($body);
-
     }
 
     $submitAnswerBtn.addEventListener('click', async () => {

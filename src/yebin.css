@@ -1,1 +1,11 @@
 /* 김예빈 css */
+
+#templateListDiv {
+  overflow-y: scroll;
+  height: 430px;
+  width: 350px;
+}
+
+#templateListDiv::-webkit-scrollbar {
+  display: none;
+}

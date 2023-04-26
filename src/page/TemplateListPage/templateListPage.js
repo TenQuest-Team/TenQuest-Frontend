@@ -25,8 +25,10 @@ export default function TemplateListPage({
     type: "TemplateList"
   });
 
+  const loginedId = sessionStorage.getItem("memberId");
+
   this.setState = async () => {
-    const templates = await request(`/api/v1/templates/6552920f34e2495eb1d71e213366993c`);
+    const templates = await request(`/api/v1/templates/${loginedId}`);
     console.log(templates)
     templateList.setState(templates.data);
     this.render();

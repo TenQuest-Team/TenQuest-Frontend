@@ -50,10 +50,7 @@ export default function App({ $target }){
         const finishSubmitAnswerPage = new FinishSubmitAnswer({$target});
 
         $target.innerHTML = '';
-        /*if(pathname === '/'){
-            homePage.render();
-        }
-        else */
+        
         if(pathname === '/') {
             loginPage.render();
         } 

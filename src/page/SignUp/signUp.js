@@ -39,6 +39,7 @@ export default function SignUp({ $target }) {
             <br>
             <button id="signUp_btn" class="submit-btn"> 가입하기 </button>
         `
+        
         $signUpDiv.appendChild($signUpForm);
         $body.appendChild($signUpDiv);
         $target.appendChild($body);
@@ -97,10 +98,7 @@ async function signUp(e) {
             "userName": userName,
             "userEmail": userEmail
         };
-        console.log(userEmail);
-        console.log(userId);
-        console.log(userName);
-        console.log(userPw);
+        
         if(userPw === checkUserPw) {
             const signUpRes = await request('/api/v1/members', {
                 method: 'POST',
