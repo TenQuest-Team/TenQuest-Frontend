@@ -67,8 +67,8 @@ export default function ViewAnswersByAnswer({$target, initialState }){
 
           $answerBox.appendChild($answer);
           $questionBox.appendChild($question);
-          $questionBox.appendChild($answerBox);
           $answerList.appendChild($questionBox);
+          $answerList.appendChild($answerBox);
         }
 
         $page.appendChild($replyerNameDiv);

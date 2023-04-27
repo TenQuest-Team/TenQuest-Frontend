@@ -52,7 +52,13 @@ export default function App({ $target }){
         $target.innerHTML = '';
 
         if(pathname === '/') {
-            loginPage.render();
+            if (sessionStorage.getItem('memberId') !== null){
+                templateListPage.setState();
+            }
+            else{
+                loginPage.render();
+            }
+
         } 
         else if(pathname.indexOf('/findID') > -1){
             findIDPage.render();
