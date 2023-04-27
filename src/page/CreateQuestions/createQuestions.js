@@ -17,6 +17,10 @@ export default function CreateQuestions({ $target, initialState }){
     const $questionListDiv = document.createElement('div');
     $questionListDiv.id = "questionListDiv";
 
+    const $questionList = document.createElement('ul');
+    $questionList.id = "questionList";
+    $questionListDiv.appendChild($questionList);
+
     this.state = initialState;
     const $selectedListDiv = document.createElement('div');
     $selectedListDiv.id = "selectedListDiv";
@@ -60,18 +64,21 @@ export default function CreateQuestions({ $target, initialState }){
     `
     $questionListDiv.appendChild($modal);
     
+    let presetQuestions = [];
     this.setState = async () => {
         const presetId = sessionStorage.getItem("presetId");
 
-        console.log(presetId)
         const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=1&accessId=root`);
 
         this.state = questions.data;
-        this.render();
 
-        // if(sessionStorage.getItem("presetId") !== null) {
-        //     const presetQuestions = await request(`/api/v1/presets/preset-id?value=${}`)
-        // }
+        if(presetId !== null) {
+            const presetQuestionsRes = await request(`/api/v1/presets/preset-id?value=${presetId}`);
+            presetQuestions = presetQuestionsRes.data.presetDocList;
+            console.log(presetQuestions)
+        }
+        
+        this.render();        
     }
     
     
@@ -107,11 +114,18 @@ export default function CreateQuestions({ $target, initialState }){
             $target
         });
 
-        const questionList = new Question({
-            $target: $questionListDiv,
-            initialState: this.state
+        new Question({
+            $target: $questionList,
+            initialState: this.state,
+            selectedPreset: false
         }).render()
         $category1.style.backgroundColor = '#007bff';
+
+        new Question({
+            $target: $selectedList,
+            initialState: presetQuestions,
+            selectedPreset: true
+        }).render();
 
         $body.appendChild($categoryListDiv);
         $body.appendChild($questionListDiv);
@@ -133,7 +147,7 @@ export default function CreateQuestions({ $target, initialState }){
 
             if(checkStatus) {
                 const $li = document.createElement('li');
-                $li.setAttribute("id", $input.id);
+                $li.setAttribute("id", `selected_${$input.id}`);
                 $li.setAttribute("class", "selectedQuestion");
                 $li.innerHTML = `${$input.value} <button class="deleteQuestion">X</button>
                 `;
@@ -149,7 +163,7 @@ export default function CreateQuestions({ $target, initialState }){
 
     let privateQuestionArr = [];
     let privateQuestionCount = 1;
-    $selectedListDiv.addEventListener('click', e => {
+    $selectedListDiv.addEventListener('click', async e => {
         e.preventDefault();
 
         const $deletebutton = e.target.closest('.deleteQuestion');
@@ -163,6 +177,14 @@ export default function CreateQuestions({ $target, initialState }){
             $selectedList.removeChild(element);
             if(deleteQuestionClass === "selectedQuestion") {
                 $questionListDiv.querySelector(`input[id="${deleteQuestionId}"]`).checked = false;
+            } else {
+                console.log(deleteQuestionId)
+                await request(`/api/v1/questions/question-id?value=${deleteQuestionId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
             }
         }
 
@@ -188,10 +210,21 @@ export default function CreateQuestions({ $target, initialState }){
             const $inputPrivateQuestion = $modal.querySelector('.newPrivateQuestion');
             $inputPrivateQuestion.focus();
 
-            $createQuestionBtn.addEventListener('click', () => {
+            $createQuestionBtn.addEventListener('click', async () => {
+                const createQuestionRes = await request('/api/v1/questions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        questionContent: $inputPrivateQuestion.value,
+                        questionCreatedBy: memberId
+                    })
+                })
+
                 const $li = document.createElement('li');
                 $li.setAttribute("class", "privateQuestions");
-                $li.id = `privateQuestion${privateQuestionCount++}`;
+                $li.id = createQuestionRes.data.questionId;
                 $li.innerHTML = `${$inputPrivateQuestion.value} <button class="deleteQuestion">X</button>
                 `;
                 $selectedList.appendChild($li);
@@ -309,15 +342,8 @@ export default function CreateQuestions({ $target, initialState }){
             },
             "동일한 이름의 템플릿이 존재합니다. 다른 이름을 입력해주세요."
             );
-            if(createdPost.code === 201){
-                const createdQuestions = await request(`/api/v1/questions`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(privateQuestionArr)
-                });
-            }
+
+            console.log(createdPost)
             
 
             

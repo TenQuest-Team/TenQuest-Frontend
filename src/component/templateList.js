@@ -42,7 +42,7 @@ export default function TemplateList({
   $templateList.addEventListener('click', e => {
     const $li = e.target.closest('.templateList');
 
-    if($li.parentNode.className === "templateList") {
+    if($li.parentNode.className === "templateListUl") {
       sessionStorage.setItem('templateId', $li.id);
       push(`/template/${$li.id}`);
     } else{

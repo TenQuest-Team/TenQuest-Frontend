@@ -1,26 +1,33 @@
-export default function Question({ $target, initialState }){
-    const $questionList = document.createElement('ul');
-    $questionList.setAttribute("id", "questions");
-    $target.appendChild($questionList);
-    
+export default function Question({ $target, initialState, selectedPreset }){
     this.state = initialState;
-
-    console.log(initialState)
-    /*
+    
     this.setState = nextState => {
         this.state = nextState;
         this.render();
     }
-*/
-    this.render = () =>{
-        $questionList.innerHTML = `
-            ${this.state.map(({ questionId, questionContent }) => `
-            <li>
-                <input type="checkbox" id="${questionId}" value="${questionContent}" class="question-item">
-                <label for="${questionId}"> ${questionContent}</label>
-            </li>
-            `).join('')}
-            
-        `
+
+    if(!selectedPreset) {
+        this.render = () =>{
+            $target.innerHTML = `
+                ${this.state.map(({ questionId, questionContent }) => `
+                <li>
+                    <input type="checkbox" id="${questionId}" value="${questionContent}" class="question-item">
+                    <label for="${questionId}"> ${questionContent}</label>
+                </li>
+                `).join('')}
+                
+            `
+        }
+    } else {
+        this.render = () =>{
+            $target.innerHTML = `
+                ${this.state.map(({ questionId, questionContent }) => `
+                    <li class="selectedQuestion" id="selected_${questionId}">
+                        ${questionContent} <button class="deleteQuestion">X</button>
+                    </li>
+                `).join('')}
+                
+            `
+        } 
     }
 }

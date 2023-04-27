@@ -23,7 +23,7 @@ export default function Questionnaire({$target, initialState}){
     }
 
     const $label = document.createElement('label');
-    const $p = document.createElement('p');
+    const $p = document.createElement('label');
     $p.innerText = '닉네임을 입력하세요.';
     const $input = document.createElement('input');
     $input.setAttribute('id', 'replyer_Nickname');
