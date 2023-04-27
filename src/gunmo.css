@@ -1,1 +1,40 @@
 /* 구건모 css */
+
+#replyer_Nickname{
+  padding: 16px;
+  width: 40%;
+  height: 20px;
+  margin-bottom: 5px;
+  border: 0;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset 3px 2px 4px #babebc, inset -5px -5px 12px #fff;
+}
+
+#question_text{
+  padding: 16px;
+  width: 80%;
+  height: 20px;
+  margin-bottom: 5px;
+  border: 0;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset 3px 2px 4px #babebc, inset -5px -5px 12px #fff;
+}
+
+#submitAnswerBtn {
+  font-size:x-small;
+
+  background: #eee;
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #808080;
+
+    padding: 5px 15px;
+    margin: 2 5 20 5px;
+    display: inline-block;
+    width: 32%;
+    cursor: pointer;
+
+}

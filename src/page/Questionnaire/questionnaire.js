@@ -58,7 +58,7 @@ export default function Questionnaire({$target, initialState}){
                     `
                             <li>
                                 <label><p>${questionContent}</p></label>
-                                <input type="text" data-questionId="${questionId}">
+                                <input type="text" id="question_text" data-questionId="${questionId}">
                             </li>
                         `
                     
