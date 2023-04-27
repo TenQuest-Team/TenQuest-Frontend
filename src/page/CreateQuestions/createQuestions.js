@@ -306,27 +306,37 @@ export default function CreateQuestions({ $target, initialState }){
             document.querySelector('.modal').classList.add("hidden");
         })
 
+
+
+        const selectedQuestions = $selectedListDiv.querySelectorAll(".selectedQuestion");
+        selectedQuestions.forEach(element => console.log(element))
+
+
         document.querySelector('.createSubmitBtn').addEventListener('click', async () => {
-            const selectedQuestions = $selectedListDiv.getElementsByClassName("selectedQuestion");
+            console.log("click!!!!!!!!!!!!")
+            const selectedQuestions = $selectedListDiv.querySelectorAll(".selectedQuestion");
         
             const selectedQuestionsArray = [];
             for(let i=0; i<selectedQuestions.length; i++){
                 selectedQuestionsArray.push({
                     questionOrder: (i+1),
-                    questionId: selectedQuestions[i].id
+                    questionId: selectedQuestions[i].id.split('_')[1]
                 });
             }
 
-            for(let i=0; i<createdPrivateQuestions.length; i++){
-                selectedQuestionsArray.push({
-                    questionOrder: (i+1),
-                    questionId: createdPrivateQuestions[i].id
-                });
-            }
+            // for(let i=0; i<createdPrivateQuestions.length; i++){
+            //     selectedQuestionsArray.push({
+            //         questionOrder: (i+1),
+            //         questionId: createdPrivateQuestions[i].id
+            //     });
+            // }
 
+            const $newTemplateTitle = document.querySelector('#newTemplateTitle');
+            $newTemplateTitle.focus();
+            
             const requestBody = {
                 templateDto: {
-                    templateName: document.querySelector('#newTemplateTitle').value,
+                    templateName: $newTemplateTitle.value,
                     isPublic: !(document.querySelector('#checkIsPublic').checked)
                 },
                 templateDocList: selectedQuestionsArray
@@ -341,11 +351,6 @@ export default function CreateQuestions({ $target, initialState }){
             },
             "동일한 이름의 템플릿이 존재합니다. 다른 이름을 입력해주세요."
             );
-
-            console.log(createdPost)
-            
-
-            
 
             if(createdPost){
                 push(`/shareTemplate/${createdPost.data.templateDto.templateId}`);
