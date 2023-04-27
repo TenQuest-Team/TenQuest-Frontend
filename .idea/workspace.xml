@@ -7,7 +7,6 @@
     <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="CSS 계정 관련 html button 수정 - @songarden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gunmo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/gunmo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FinishSubmitAnswer/finishSubmitAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FinishSubmitAnswer/finishSubmitAnswer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
