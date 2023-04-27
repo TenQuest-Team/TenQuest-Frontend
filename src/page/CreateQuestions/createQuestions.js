@@ -236,6 +236,7 @@ export default function CreateQuestions({ $target, initialState }){
                 questionCreatedBy: memberId
             })
         })
+
         if(document.querySelector('.modal')){
 
             document.querySelector('.modal').classList.remove("hidden");
@@ -271,9 +272,22 @@ export default function CreateQuestions({ $target, initialState }){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(requestBody)
-            });
+            },
+            "동일한 이름의 템플릿이 존재합니다. 다른 이름을 입력해주세요."
+            );
+            if(createdPost.code === 201){
+                const createdQuestions = await request(`/api/v1/questions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(privateQuestionArr)
+                });
+            }
+            
 
-            console.log(createdPost)
+            
+
             if(createdPost){
                 push(`/shareTemplate/${createdPost.data.templateDto.templateId}`);
             }

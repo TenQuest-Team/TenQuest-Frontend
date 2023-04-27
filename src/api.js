@@ -1,6 +1,6 @@
 const API_END_POINT = 'https://tenquest.run.goorm.site';
 
-export const request = async (url, options = {}) => {
+export const request = async (url, options = {}, errorMessage='API 호출 오류') => {
     try{
       const res = await fetch(`${API_END_POINT}${url}`, {
         ...options
@@ -12,6 +12,6 @@ export const request = async (url, options = {}) => {
   
       throw new Error('API 호출 오류')
     } catch(e) {
-      alert(e.message);
+      alert(errorMessage);
     }
-  }
+  } 
