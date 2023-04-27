@@ -154,7 +154,7 @@ export default function CreateQuestions({ $target, initialState }){
                 $selectedList.appendChild($li) 
                 console.log($li)
             } else{
-                const element = $selectedList.querySelector(`li[id="${$input.id}"]`);
+                const element = $selectedList.querySelector(`li[id="selected_${$input.id}"]`);
                 $selectedList.removeChild(element);
                 $input.checked = false;
             }
@@ -162,7 +162,6 @@ export default function CreateQuestions({ $target, initialState }){
     });
 
     let privateQuestionArr = [];
-    let privateQuestionCount = 1;
     $selectedListDiv.addEventListener('click', async e => {
         e.preventDefault();
 
@@ -176,7 +175,7 @@ export default function CreateQuestions({ $target, initialState }){
             const element = $selectedList.querySelector(`li[id="${deleteQuestionId}"]`);
             $selectedList.removeChild(element);
             if(deleteQuestionClass === "selectedQuestion") {
-                $questionListDiv.querySelector(`input[id="${deleteQuestionId}"]`).checked = false;
+                $questionListDiv.querySelector(`input[id="${deleteQuestionId.split('_')[1]}"]`).checked = false;
             } else {
                 console.log(deleteQuestionId)
                 await request(`/api/v1/questions/question-id?value=${deleteQuestionId}`, {
