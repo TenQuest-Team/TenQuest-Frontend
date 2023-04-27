@@ -58,15 +58,22 @@ export default function CreateQuestions({ $target, initialState }){
         <button class="createQuestionBtn">질문 생성하기</button>
         <button class="closeBtn">✖</button>
     `
-
     $questionListDiv.appendChild($modal);
     
     this.setState = async () => {
+        const presetId = sessionStorage.getItem("presetId");
+
+        console.log(presetId)
         const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=1&accessId=root`);
 
         this.state = questions.data;
         this.render();
+
+        // if(sessionStorage.getItem("presetId") !== null) {
+        //     const presetQuestions = await request(`/api/v1/presets/preset-id?value=${}`)
+        // }
     }
+    
     
     
     const $category1 = document.createElement('button');
@@ -213,7 +220,7 @@ export default function CreateQuestions({ $target, initialState }){
                 $category3.style.backgroundColor = '#eee';
                 $category4.style.backgroundColor = '#eee';
             } else if(buttonDataset.categoryid === '3'){
-                $category1.style.backgroundColor = '#eee';
+                $category1.style.backgroundColor = '#eee'; 
                 $category2.style.backgroundColor = '#eee';
                 $category4.style.backgroundColor = '#eee';
                 $category3.style.backgroundColor = '#007bff';
@@ -247,8 +254,8 @@ export default function CreateQuestions({ $target, initialState }){
         `;
         e.preventDefault();
 
-        const soso = $selectedList.querySelectorAll('.privateQuestions');
-        soso.forEach(element => {
+        const createdPrivateQuestions = $selectedList.querySelectorAll('.privateQuestions');
+        createdPrivateQuestions.forEach(element => {
             let questionContent = element.innerText;
 
             privateQuestionArr.push({
@@ -277,7 +284,14 @@ export default function CreateQuestions({ $target, initialState }){
                     questionId: selectedQuestions[i].id
                 });
             }
-            console.log(selectedQuestionsArray)
+
+            for(let i=0; i<createdPrivateQuestions.length; i++){
+                selectedQuestionsArray.push({
+                    questionOrder: (i+1),
+                    questionId: createdPrivateQuestions[i].id
+                });
+            }
+
             const requestBody = {
                 templateDto: {
                     templateName: document.querySelector('#newTemplateTitle').value,

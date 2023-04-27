@@ -8,7 +8,7 @@ export default function ShareTemplatePage({$target}) {
   $creationCompleteDiv.id = 'creationCompleteDiv';
   
   const $shareButton = document.createElement('button');
-  $shareButton.innerText = "링크 공유하기";
+  $shareButton.innerText = "링크 복사하기";
 
   this.render = () => {
     const $successMessage = document.createElement('p');
@@ -22,38 +22,9 @@ export default function ShareTemplatePage({$target}) {
 
   }
 
-
   $shareButton.addEventListener('click', () => {
     const [,,templateId] = location.pathname.split('/');
-    // const shareTitle = "공유하기 기능 테스트";
-    // const shareText = "공유하기 기능입니다";
-    console.log(location.host)
-    const contentURL = location.host + `/reply/${templateId}`;
+        const contentURL = location.host + `/reply/${templateId}`;
     navigator.clipboard.writeText(contentURL);
-    // let URLPreFix = "";
-
-    // URLPreFix = URLPreFix + "//" + location.host;
-    // console.log(URLPreFix)
-    // const shareURL = URLPreFix + contentURL;
-
-    // if(navigator.share) {
-    //   navigator.share({
-    //     title: shareTitle,
-    //     text: shareText,
-    //     url: shareURL
-    //   })
-    //   .then(() => console.log('successful share'))
-    //   .catch(e => console.log('error sharing', e));
-    // } else {
-    //   alert('공유하기를 ~~');
-    // }
-
-    window.addEventListener("copy", e => {
-      e.preventDefault();
-      console.log(contentURL)
-      e.clipboardData.setData("text", contentURL);
-      console.log(e.clipboardData.getData('text'))
-    })
-
   });
 }

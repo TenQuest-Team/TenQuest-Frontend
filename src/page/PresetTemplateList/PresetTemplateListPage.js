@@ -50,6 +50,7 @@ export default function PresetTemplateListPage({
 
   $createOwnTemplate.addEventListener('click', (e) => {
     e.preventDefault();
+    sessionStorage.removeItem('presetId');
     push('/createNewTemplate');
   })
 }

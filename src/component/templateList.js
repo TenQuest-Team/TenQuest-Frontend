@@ -29,7 +29,7 @@ export default function TemplateList({
       `
     } else if(type === "PresetTemplateList") {
       $templateList.innerHTML = `
-        <ul class="templateListUl">
+        <ul class="presetListUl">
           ${this.state.map(template => `
             <li id="${template.presetId}" class="templateList">${template.presetName}</li>
           `).join('')}
@@ -41,11 +41,13 @@ export default function TemplateList({
   
   $templateList.addEventListener('click', e => {
     const $li = e.target.closest('.templateList');
-    console.log($li)
-    if($li){
-      sessionStorage.setItem('templateId', $li.id)
+
+    if($li.parentNode.className === "templateList") {
+      sessionStorage.setItem('templateId', $li.id);
       push(`/template/${$li.id}`);
+    } else{
+      sessionStorage.setItem('presetId', $li.id);
+      push(`/createNewTemplate`);
     }
   });
-
 }
