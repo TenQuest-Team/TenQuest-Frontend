@@ -20,7 +20,7 @@ export default function SignUp({ $target }) {
         });
         
         $signUpForm.innerHTML = `
-            <p>[회원가입]</p>
+            <div class="joinP">회원가입</div>
             <label for="user_id">아이디</label>
             <input  type = "text" class ="sign-up-input" id="user_id" name = "user_id" placeholder = "ID">
             <button id="overlap_check_btn" class ="check-btn">중복 검사</button>
@@ -37,7 +37,7 @@ export default function SignUp({ $target }) {
             <label for="user_email">이메일</label>
             <input type = "text" class ="sign-up-input" id="user_email" name = "user_email" placeholder = "E-mail">
             <br>
-            <button id="signUp_btn" class="submit-btn"> 가입하기 </button>
+            <button id="signUp_btn" class="join-btn"> 가입하기 </button>
         `
         
         $signUpDiv.appendChild($signUpForm);

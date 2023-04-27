@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e9bca8c-1d10-42e4-9dd8-bbf2084f99c6" name="Changes" comment="CSS 계정 관련 html button 수정 - @songarden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/templateList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/templateList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/CreateQuestions/createQuestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/CreateQuestions/createQuestions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FindID/findID.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FindID/findID.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FinishSubmitAnswer/finishSubmitAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/FinishSubmitAnswer/finishSubmitAnswer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/PresetTemplateList/PresetTemplateListPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/ViewAnswers/viewAnswers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ViewAnswers/viewAnswers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/ViewAnswersByAnswer/viewAnswersByAnswer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ViewAnswersByAnswer/viewAnswersByAnswer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/ViewAnswersByQuestion/viewAnswersByQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ViewAnswersByQuestion/viewAnswersByQuestion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gunmo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/gunmo.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,24 +47,10 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/garden/IdeaProjects/TenQuest-Frontend&quot;
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/IdeaProjects/TenQuest-BE&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="TenQuest-Frontend" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="TenQuest-Frontend" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
