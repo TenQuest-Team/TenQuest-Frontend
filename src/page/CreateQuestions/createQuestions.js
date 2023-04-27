@@ -9,6 +9,8 @@ export default function CreateQuestions({ $target, initialState }){
     $body.className = 'body';
     
     const memberId = sessionStorage.getItem('memberId');
+    const userId = sessionStorage.getItem('userId');
+
     const $categoryListDiv = document.createElement('div');
     $categoryListDiv.class = "categoryListDiv";
 
@@ -82,9 +84,15 @@ export default function CreateQuestions({ $target, initialState }){
     $category3.setAttribute("class", "categories");
     $category3.innerText = '인간관계';
 
+    const $category4 = document.createElement('button');
+    $category4.setAttribute("data-categoryId", "0");
+    $category4.setAttribute("class", "categories");
+    $category4.innerText = '사용자 생성';
+
     $categoryListDiv.appendChild($category1);
     $categoryListDiv.appendChild($category2);
     $categoryListDiv.appendChild($category3);
+    $categoryListDiv.appendChild($category4);
 
     this.render = () => {
 
@@ -198,21 +206,31 @@ export default function CreateQuestions({ $target, initialState }){
                 $category1.style.backgroundColor = '#007bff';
                 $category2.style.backgroundColor = '#eee';
                 $category3.style.backgroundColor = '#eee';
+                $category4.style.backgroundColor = '#eee';
             } else if(buttonDataset.categoryid === '2'){
                 $category1.style.backgroundColor = '#eee';
                 $category2.style.backgroundColor = '#007bff';
                 $category3.style.backgroundColor = '#eee';
+                $category4.style.backgroundColor = '#eee';
             } else if(buttonDataset.categoryid === '3'){
                 $category1.style.backgroundColor = '#eee';
                 $category2.style.backgroundColor = '#eee';
+                $category4.style.backgroundColor = '#eee';
                 $category3.style.backgroundColor = '#007bff';
+            } else if(buttonDataset.categoryid === '0'){
+                $category1.style.backgroundColor = '#eee';
+                $category2.style.backgroundColor = '#eee';
+                $category3.style.backgroundColor = '#eee';
+                $category4.style.backgroundColor = '#007bff';
             }
 
-            const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=${buttonDataset.categoryid}&accessId=root`);
-
+            const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=${buttonDataset.categoryid}&accessId=${buttonDataset.categoryid === "0" ? memberId : 'root'}`);
+            console.log(questions)
             $questionListDiv.innerHTML = "";
             $questionListDiv.appendChild($modal);
+
             this.state = questions.data;
+
             new Question({
                 $target: $questionListDiv,
                 initialState: this.state
@@ -231,8 +249,10 @@ export default function CreateQuestions({ $target, initialState }){
 
         const soso = $selectedList.querySelectorAll('.privateQuestions');
         soso.forEach(element => {
+            let questionContent = element.innerText;
+
             privateQuestionArr.push({
-                questionContent: element.innerText.split(" ")[0],
+                questionContent: questionContent.slice(0, questionContent.length-1),
                 questionCreatedBy: memberId
             })
         })

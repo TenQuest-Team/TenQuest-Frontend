@@ -23,8 +23,10 @@ export default function ViewAnswersByQuestion({$target, initialState }){
     
     this.setState = async nextState => {
         const answerDoc = await request(`/api/v1/answers/docId?value=${nextState.templateDocId}`)
-        this.state = answerDoc.data;
-
+        
+        if(answerDoc){
+            this.state = answerDoc.data;
+        } 
         const questionRes = await request(`/api/v1/questions/content/questionId?value=${nextState.questionId}`)
         questionContent = questionRes.data;
         this.render();
@@ -32,7 +34,7 @@ export default function ViewAnswersByQuestion({$target, initialState }){
 
     const $questionContentDiv = document.createElement('div');
     $questionContentDiv.className = 'viewDocTitleDiv';
-    
+      
     const $h2 = document.createElement('h2');
 
     this.render = () => {
