@@ -1,6 +1,7 @@
 /* 김예빈 css */
 
 #templateListDiv {
+  margin-top : 10px;
   overflow-y: scroll;
   height: 430px;
   width: 350px;
