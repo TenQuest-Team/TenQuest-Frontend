@@ -4,9 +4,18 @@ export default function FinishSubmitAnswer({$target}){
     
     const $body = document.createElement('div');
     $body.className = 'body';
-    
+
+    const $tenquest = document.createElement('p');
+    $tenquest.innerText = 'Tenquest';
+    $tenquest.id = "tenquest";
+
+
+    const $submitMessage = document.createElement('p');
+    $submitMessage.innerText = '답변이 제출되었습니다!';
+    $submitMessage.id = "submitMessage"
+
     const $readButton = document.createElement('button');
-    $readButton.id - 'readAnswersBtn';
+    $readButton.id = "readAnswersBtn";
     $readButton.textContent = "다른 사람 답변 보기";
     
     const $spanDiv = document.createElement('div');
@@ -23,7 +32,9 @@ export default function FinishSubmitAnswer({$target}){
     }
 
     this.render = () => {
-        
+
+        $body.appendChild($tenquest);
+        $body.appendChild($submitMessage);
         $body.appendChild($readButton);
 
         $body.appendChild($spanDiv);
