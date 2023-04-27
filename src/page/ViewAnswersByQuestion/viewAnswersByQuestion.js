@@ -55,17 +55,17 @@ export default function ViewAnswersByQuestion({$target, initialState }){
         $page.appendChild($questionBoxDiv);
 
 
-
-        for(let i = 0; i < this.state.length; i++) {
-            const {answerContent} = this.state[i];
-            const $answerBoxDiv = document.createElement('div');
-            $answerBoxDiv.className = 'answer-box'
-            const $answerContentDiv = document.createElement('div');
-            $answerContentDiv.className = 'answer'
-            $answerContentDiv.innerText = `A. ${answerContent}`;
-            $answerBoxDiv.appendChild($answerContentDiv);
-            $answerList.appendChild($answerBoxDiv);
-        }
+        this.state.map(({answerContent, isPublic}) => {
+            if(isPublic || memberId){
+                const $answerBoxDiv = document.createElement('div');
+                $answerBoxDiv.className = 'answer-box'
+                const $answerContentDiv = document.createElement('div');
+                $answerContentDiv.className = 'answer'
+                $answerContentDiv.innerText = `A. ${answerContent}`;
+                $answerBoxDiv.appendChild($answerContentDiv);
+                $answerList.appendChild($answerBoxDiv);
+            }
+        })
 
 
         

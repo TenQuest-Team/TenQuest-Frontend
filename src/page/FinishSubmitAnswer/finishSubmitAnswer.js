@@ -35,8 +35,10 @@ export default function FinishSubmitAnswer({$target}){
 
         $body.appendChild($tenquest);
         $body.appendChild($submitMessage);
-        $body.appendChild($readButton);
 
+        if(sessionStorage.getItem('template_isPublic') === "true"){
+            $body.appendChild($readButton);
+        }
         $body.appendChild($spanDiv);
         $body.appendChild($shareButton);
         $target.appendChild($body);

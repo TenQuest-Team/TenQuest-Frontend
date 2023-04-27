@@ -46,15 +46,17 @@ export default function ViewAnswers({$target, initialState }){
         $categoryListDiv.appendChild($category2);
         $body.appendChild($categoryListDiv);
 
-        console.log(this.state)
         if(sessionStorage.getItem('viewType') === 'answers'){
-            this.state.map(({replyerId, replyerName}) => {
-                const $li = document.createElement('li');
-                $li.setAttribute('class', 'replyerList');
-                $li.setAttribute('data-replyerId', replyerId);
-                $li.setAttribute('data-replyerName', replyerName);
-                $li.innerText = replyerName;
-                $answerList.appendChild($li);
+            this.state.map(({replyerId, replyerName, isPublic }) => {
+                console.log(isPublic)
+                if(isPublic || memberId) {
+                    const $li = document.createElement('li');
+                    $li.setAttribute('class', 'replyerList');
+                    $li.setAttribute('data-replyerId', replyerId);
+                    $li.setAttribute('data-replyerName', replyerName);
+                    $li.innerText = replyerName;
+                    $answerList.appendChild($li);
+                }
             })
         } else {
             this.state.templateDocList.map(({templateDocId, questionContent, questionId}) => {

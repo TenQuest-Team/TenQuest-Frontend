@@ -18,7 +18,7 @@ export default function Questionnaire({$target, initialState}){
         templateId = nextState;
         const questions = await request(`/api/v1/templates/template-id?value=${nextState}`);
         this.state = questions.data;
-        console.log(this.state)
+        sessionStorage.setItem('template_isPublic', questions.data.templateDto.isPublic);        
         this.render();
     }
 
