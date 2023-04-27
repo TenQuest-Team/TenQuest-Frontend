@@ -208,4 +208,38 @@ padding: 16px;
 .logout-Btn{
     margin-right : 10px;
 }
+#creationCompleteDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.share-btn{
+    font-size:medium;
+    display: block;
+    width: 100%;
+    background: #eee;
+    padding: 22px;
+    margin-top: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+    cursor: pointer;
+}
+
+.success-Msg{
+
+}
+
+.body-share{
+    background: #ebecf0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    height: 600px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
 
