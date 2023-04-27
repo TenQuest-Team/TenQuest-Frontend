@@ -51,7 +51,7 @@ export default function CreateQuestions({ $target, initialState }){
         <br>
         <br>
         <button class="createSubmitBtn">템플릿 생성하기</button>
-        <button class="closeBtn">✖</button>
+        <button class="closeBtn">닫기</button>
     `
 
     const createPrivateQuestionModal = `
@@ -60,7 +60,7 @@ export default function CreateQuestions({ $target, initialState }){
         <br>
         <br>
         <button class="createQuestionBtn">질문 생성하기</button>
-        <button class="closeBtn">✖</button>
+        <button class="closeBtn">닫기</button>
     `
     $questionListDiv.appendChild($modal);
     
@@ -222,8 +222,8 @@ export default function CreateQuestions({ $target, initialState }){
                 })
 
                 const $li = document.createElement('li');
-                $li.setAttribute("class", "privateQuestions");
-                $li.id = createQuestionRes.data.questionId;
+                $li.setAttribute("class", "selectedQuestion");
+                $li.id = `selected_${createQuestionRes.data.questionId}`;
                 $li.innerHTML = `${$inputPrivateQuestion.value} <button class="deleteQuestion">X</button>
                 `;
                 $selectedList.appendChild($li);
@@ -265,13 +265,13 @@ export default function CreateQuestions({ $target, initialState }){
 
             const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=${buttonDataset.categoryid}&accessId=${buttonDataset.categoryid === "0" ? memberId : 'root'}`);
             console.log(questions)
-            $questionListDiv.innerHTML = "";
+            $questionList.innerHTML = "";
             $questionListDiv.appendChild($modal);
 
             this.state = questions.data;
 
             new Question({
-                $target: $questionListDiv,
+                $target: $questionList,
                 initialState: this.state
             }).render()
         }
@@ -315,7 +315,7 @@ export default function CreateQuestions({ $target, initialState }){
         document.querySelector('.createSubmitBtn').addEventListener('click', async () => {
             console.log("click!!!!!!!!!!!!")
             const selectedQuestions = $selectedListDiv.querySelectorAll(".selectedQuestion");
-        
+            console.log(selectedQuestions)
             const selectedQuestionsArray = [];
             for(let i=0; i<selectedQuestions.length; i++){
                 selectedQuestionsArray.push({
@@ -323,7 +323,7 @@ export default function CreateQuestions({ $target, initialState }){
                     questionId: selectedQuestions[i].id.split('_')[1]
                 });
             }
-
+            console.log(selectedQuestionsArray)
             // for(let i=0; i<createdPrivateQuestions.length; i++){
             //     selectedQuestionsArray.push({
             //         questionOrder: (i+1),
