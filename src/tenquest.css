@@ -27,7 +27,7 @@ body{
   width:50%;
   background: #ebecf0;
   display: flex;
-  justify-content: left; 
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
@@ -36,14 +36,30 @@ body{
   border: none;
   background: #ebecf0;
   font-size: xx-large;
-  margin-right: 65px;
-  margin-left: 20px;
+  justify-content:left;
 }
 
-#title {
+.title {
   display: inline-block;
-  width: 200px;
+  width: 350px;
   text-align: center;
+}
+
+.logout-Btn{
+    align-self:flex-end;
+    font-size:x-small;
+    background: #eee;
+    border: 0;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+
+    padding: 5px 15px;
+    margin-bottom : 2px;
+    display: inline-block;
+    width: 32%;
+    cursor: pointer;
+
 }
 * {
   box-sizing: border-box;

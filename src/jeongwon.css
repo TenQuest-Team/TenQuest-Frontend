@@ -22,10 +22,6 @@
     box-shadow: -1px 1px 0 rgba(0,0,0,0.3);
 }
 
-.answerListDiv {
-  width: 100%;
-  margin-top: 20px;
-}
 
 .viewDocTitleDiv {
   display: flex;
@@ -140,6 +136,16 @@
     }
 }*/
 
+.answerListDiv {
+  width: 100%;
+   margin-top: 20px;
+  overflow-y: scroll;
+  height: 430px;
+}
+
+#answerListDiv::-webkit-scrollbar {
+  display: none;
+}
 
 
 

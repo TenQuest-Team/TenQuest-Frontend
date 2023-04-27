@@ -4,7 +4,7 @@ import Header from "../../component/header.js";
 
 export default function Login({ $target }) {
     const $header = document.createElement('div');
-    $header.className = 'header'
+    $header.className = 'header';
 
     const $body = document.createElement('div');
     $body.className = 'body';
@@ -32,6 +32,7 @@ export default function Login({ $target }) {
         });
         */
         $target.appendChild($header);
+
         $loginForm.innerHTML = `
             <label for="user_id"></label>
             <input type = "text" class ="login-input" id="user_id" name = "user_id" placeholder="ID">
@@ -58,9 +59,6 @@ export default function Login({ $target }) {
             $signUpButton.addEventListener('click', route_signUpPage)
         }
     }
-    
-
-    
 }
 
 //$2a$10$c1JRvr9js1IBDdmfQNrwDOpSVs4zYwvmC1qCb6peigEPIL3MbFjHe
