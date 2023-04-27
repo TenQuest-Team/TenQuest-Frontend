@@ -85,7 +85,7 @@ async function checkLogin(e) {
     if(loginRes.code === "200") {
         alert(userName + "님 환영합니다.");
         sessionStorage.setItem('memberId', memberId);
-        push('/templates');
+        replaceState(null, null, '/templates');
     } else {
         alert(message);
     }

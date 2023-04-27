@@ -19,8 +19,9 @@ export default function Header({ $target }){
 
     this.render();
 
-    $beforeButton.addEventListener('click', () =>
-        history.back(1)
-    )
+    $beforeButton.addEventListener('click', () => {
+        history.back();
+        return false;
+    })
 }
 

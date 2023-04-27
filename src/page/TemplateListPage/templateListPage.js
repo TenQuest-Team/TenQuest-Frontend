@@ -56,7 +56,6 @@ export default function TemplateListPage({
   
   $createTemplate.addEventListener('click', (e) => {
     e.preventDefault();
-    history.replaceState(null, null, '/template/preset')
     push('/template/preset');
   });
 }
