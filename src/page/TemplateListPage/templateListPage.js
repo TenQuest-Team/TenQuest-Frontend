@@ -18,6 +18,12 @@ export default function TemplateListPage({
   const $h2 = document.createElement('h2');
   $h2.innerText = 'Template List';
   $h2.setAttribute("class", 'list-title');
+  $page.appendChild($h2);
+
+  const $createTemplate = document.createElement('button');
+  $createTemplate.innerText = "create template";
+  $createTemplate.setAttribute("class", "createTemplate-btn");
+  $page.appendChild($createTemplate);
 
   const templateList = new TemplateList({
     $target: $page,
@@ -34,21 +40,11 @@ export default function TemplateListPage({
     this.render();
   }
 
-  const $buttonDiv = document.createElement('div');
-  $buttonDiv.className = 'createTemplateBtnDiv';
-
-  const $createTemplate = document.createElement('button');
-  $createTemplate.innerText = "create template";
-  $createTemplate.setAttribute("class", "createTemplate-btn");
 
   this.render = async () => {
     new Header({
       $target 
     });
-    $body.appendChild($h2);
-
-    $buttonDiv.appendChild($createTemplate);
-    $body.appendChild($buttonDiv);
     $body.appendChild($page);
     $target.appendChild($body);
 
