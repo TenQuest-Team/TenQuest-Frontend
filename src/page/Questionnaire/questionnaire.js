@@ -50,6 +50,7 @@ export default function Questionnaire({$target, initialState}){
         });
         
         const $templateOwner = document.createElement('p');
+        $templateOwner.id = "templateOwner";
         $templateOwner.innerText = `${this.state.ownerName} 님의 질문지`;
 
         $questionListDiv.innerHTML = `

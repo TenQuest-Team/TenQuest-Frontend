@@ -18,10 +18,16 @@ export default function ViewAnswers({$target, initialState }){
     $answerList.className = 'answerList'
 
     this.setState = async nextState => {
-        const replyerDoc = await request(`/api/v1/answers/replyerNames/templateId?value=${nextState}`)
+        let doc = []
         sessionStorage.setItem('templateId', nextState);
-        sessionStorage.setItem('viewType', 'answers');
-        this.state = replyerDoc.data;
+        if(!sessionStorage.getItem('viewType') || sessionStorage.getItem('viewType') === 'answers'){
+            doc = await request(`/api/v1/answers/replyerNames/templateId?value=${nextState}`)
+            sessionStorage.setItem('viewType', 'answers');
+        } else{
+            doc = await request(`/api/v1/templates/template-id?value=${nextState}`)
+        }
+        this.state = doc.data;
+        console.log(this.state)
         this.render();
     }
     const $categoryListDiv = document.createElement('div');
@@ -31,14 +37,17 @@ export default function ViewAnswers({$target, initialState }){
     $category1.setAttribute("data-categoryId", "1");
     $category1.className = "viewCategories";
     $category1.innerText = 'Answers';
-    $category1.style.backgroundColor = '#007bff';
-
 
     const $category2 = document.createElement('button');
     $category2.setAttribute("data-categoryId", "2");
     $category2.className = "viewCategories";
     $category2.innerText = 'Questions';
     
+    if(!sessionStorage.getItem('viewType') || sessionStorage.getItem('viewType') === 'answers'){
+        $category1.style.backgroundColor = '#D3CFF8';
+    } else{
+        $category2.style.backgroundColor = '#D3CFF8';    }
+
     this.render = () => {
         new Header({$target});
 
@@ -73,17 +82,6 @@ export default function ViewAnswers({$target, initialState }){
         $target.appendChild($body);
     }
 
-    /*
-    $answerList.addEventListener('click', e => {
-        const $question = e.target.closest('.template-doc-questions');
-        const dataset = $question.dataset;
-
-        if($question){
-            push(`/view/${dataset.templatedocid}/${dataset.questionid}`);
-        }
-    })
-    */
-
     $answerList.addEventListener('click', e => {
         if(sessionStorage.getItem('viewType') === 'answers'){
             const $answer = e.target.closest('.replyerList');
@@ -107,7 +105,7 @@ export default function ViewAnswers({$target, initialState }){
         this.state = templateDoc.data;
         sessionStorage.setItem('viewType', 'answers');
         $target.innerHTML = '';
-        $category1.style.backgroundColor = '#007bff';
+        $category1.style.backgroundColor = '#D3CFF8';
         $category2.style.backgroundColor = '#eee';
         $answerList.innerHTML = '';
         this.render();  
@@ -119,7 +117,7 @@ export default function ViewAnswers({$target, initialState }){
         console.log(templateDoc);
         this.state = templateDoc.data;
         sessionStorage.setItem('viewType', 'questions');
-        $category2.style.backgroundColor = '#007bff';
+        $category2.style.backgroundColor = '#D3CFF8';
         $category1.style.backgroundColor = '#eee';
         document.getElementsByClassName('header')[0].innerHTML = '';
         $target.innerHTML = '';

@@ -10,6 +10,7 @@ export default function ShareTemplatePage({$target}) {
   const $shareButton = document.createElement('button');
   $shareButton.innerText = "링크 복사하기";
   $shareButton.className = 'share-btn';
+
   this.render = () => {
     const $successMessage = document.createElement('div');
     $successMessage.className = 'success-Msg'
@@ -23,9 +24,11 @@ export default function ShareTemplatePage({$target}) {
 
   }
 
+
   $shareButton.addEventListener('click', () => {
     const [,,templateId] = location.pathname.split('/');
         const contentURL = location.host + `/reply/${templateId}`;
     navigator.clipboard.writeText(contentURL);
+    $shareButton.innerHTML = `<img src="/Icons/CopyCheck.png">`
   });
 }

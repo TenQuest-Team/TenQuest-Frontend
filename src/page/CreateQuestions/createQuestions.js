@@ -12,7 +12,7 @@ export default function CreateQuestions({ $target, initialState }){
     const userId = sessionStorage.getItem('userId');
 
     const $categoryListDiv = document.createElement('div');
-    $categoryListDiv.class = "categoryListDiv";
+    $categoryListDiv.className = "categoryListDiv";
 
     const $questionListDiv = document.createElement('div');
     $questionListDiv.id = "questionListDiv";
@@ -27,7 +27,9 @@ export default function CreateQuestions({ $target, initialState }){
 
     $selectedListDiv.innerHTML = `
         <p id="selectedDivTitle">[Selected Questions]</p>
-        <button id="create-private-question">+</button>
+        <button id="create-private-question">
+            new question
+        </button>
     `
     const $selectedList = document.createElement('ol');
     $selectedList.id = "selectedList";
@@ -119,7 +121,8 @@ export default function CreateQuestions({ $target, initialState }){
             initialState: this.state,
             selectedPreset: false
         }).render()
-        $category1.style.backgroundColor = '#007bff';
+        $category1.style.backgroundColor = '#D3CFF8';
+        $category1.style.color = 'white';
 
         new Question({
             $target: $selectedList,
@@ -149,7 +152,7 @@ export default function CreateQuestions({ $target, initialState }){
                 const $li = document.createElement('li');
                 $li.setAttribute("id", `selected_${$input.id}`);
                 $li.setAttribute("class", "selectedQuestion");
-                $li.innerHTML = `${$input.value} <button class="deleteQuestion">X</button>
+                $li.innerHTML = `${$input.value} <button class="deleteQuestion"><img src="/Icons/Style=Filled.png"></button>
                 `;
                 $selectedList.appendChild($li) 
                 console.log($li)
@@ -224,7 +227,7 @@ export default function CreateQuestions({ $target, initialState }){
                 const $li = document.createElement('li');
                 $li.setAttribute("class", "selectedQuestion");
                 $li.id = `selected_${createQuestionRes.data.questionId}`;
-                $li.innerHTML = `${$inputPrivateQuestion.value} <button class="deleteQuestion">X</button>
+                $li.innerHTML = `${$inputPrivateQuestion.value} <button class="deleteQuestion"><img src="/Icons/Style=Filled.png"></button>
                 `;
                 $selectedList.appendChild($li);
 
@@ -242,25 +245,45 @@ export default function CreateQuestions({ $target, initialState }){
         
         if(button){
             if(buttonDataset.categoryid === '1'){
-                $category1.style.backgroundColor = '#007bff';
+                $category1.style.backgroundColor = '#D3CFF8';
                 $category2.style.backgroundColor = '#eee';
                 $category3.style.backgroundColor = '#eee';
                 $category4.style.backgroundColor = '#eee';
+
+                $category1.style.color = 'white';
+                $category2.style.color = 'black';
+                $category3.style.color = 'black';
+                $category4.style.color = 'black';
             } else if(buttonDataset.categoryid === '2'){
                 $category1.style.backgroundColor = '#eee';
-                $category2.style.backgroundColor = '#007bff';
+                $category2.style.backgroundColor = '#D3CFF8';
                 $category3.style.backgroundColor = '#eee';
                 $category4.style.backgroundColor = '#eee';
+
+                $category1.style.color = 'black';
+                $category2.style.color = 'white';
+                $category3.style.color = 'black';
+                $category4.style.color = 'black';
             } else if(buttonDataset.categoryid === '3'){
                 $category1.style.backgroundColor = '#eee'; 
                 $category2.style.backgroundColor = '#eee';
+                $category3.style.backgroundColor = '#D3CFF8';
                 $category4.style.backgroundColor = '#eee';
-                $category3.style.backgroundColor = '#007bff';
+
+                $category1.style.color = 'black';
+                $category2.style.color = 'black';
+                $category3.style.color = 'white';
+                $category4.style.color = 'black';
             } else if(buttonDataset.categoryid === '0'){
                 $category1.style.backgroundColor = '#eee';
                 $category2.style.backgroundColor = '#eee';
                 $category3.style.backgroundColor = '#eee';
-                $category4.style.backgroundColor = '#007bff';
+                $category4.style.backgroundColor = '#D3CFF8';
+
+                $category1.style.color = 'black';
+                $category2.style.color = 'black';
+                $category3.style.color = 'black';
+                $category4.style.color = 'white';
             }
 
             const questions = await request(`/api/v1/questions/contents/questionCategoryIdAndAccessId?questionCategoryId=${buttonDataset.categoryid}&accessId=${buttonDataset.categoryid === "0" ? memberId : 'root'}`);
@@ -324,12 +347,6 @@ export default function CreateQuestions({ $target, initialState }){
                 });
             }
             console.log(selectedQuestionsArray)
-            // for(let i=0; i<createdPrivateQuestions.length; i++){
-            //     selectedQuestionsArray.push({
-            //         questionOrder: (i+1),
-            //         questionId: createdPrivateQuestions[i].id
-            //     });
-            // }
 
             const $newTemplateTitle = document.querySelector('#newTemplateTitle');
             $newTemplateTitle.focus();

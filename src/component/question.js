@@ -23,7 +23,7 @@ export default function Question({ $target, initialState, selectedPreset }){
             $target.innerHTML = `
                 ${this.state.map(({ questionId, questionContent }) => `
                     <li class="selectedQuestion" id="selected_${questionId}">
-                        ${questionContent} <button class="deleteQuestion">X</button>
+                        ${questionContent} <button class="deleteQuestion"><img src="/Icons/Style=Filled.png"></button>
                     </li>
                 `).join('')}
                 
